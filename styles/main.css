@@ -1,5 +1,10 @@
 body
 {
-	background:#999;
-	font-family: arial;
+	background: blue;
+}
+
+
+p
+{
+	background: #1a75ff;
 }
