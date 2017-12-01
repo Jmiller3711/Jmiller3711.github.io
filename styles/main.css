@@ -16,6 +16,12 @@
 	color:white;
 }
 
+#homepage.home .card-img-top
+{
+	max-height: 195px;
+}
+
+
 #brewing.home .jumbotron
 {
 	margin: 3%;
@@ -56,4 +62,14 @@
 .brewingSchedule
 {
 	position: absolute;
+}
+
+#contact .card
+{
+	margin: 3%;
+}
+
+#contact .card-img-top
+{
+	max-height: 250px;
 }
