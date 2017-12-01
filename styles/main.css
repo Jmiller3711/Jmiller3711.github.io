@@ -3,9 +3,21 @@ body
 	background-color: #f2f2f2;
 }
 
-.jumbotron
+#tutoring.home .jumbotron
 {
 	margin: 3%;
+	background-image: url("../pics/chalkboard.jpg");
+	background-size: cover;
+}
+
+#tutoring.home p
+{
+	color: white
+}
+
+#tutoring.home h1
+{
+	color:white
 }
 
 .myPanel 
@@ -30,3 +42,13 @@ body
 	padding: 10px 20px;
 }
 
+.brewingSchedule
+{
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	width: 500px;
+	height: 500px;
+	margin-top: -250px; /* Half the height */
+	margin-left: -250px; /* Half the width */
+}
