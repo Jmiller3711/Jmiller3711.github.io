@@ -1,4 +1,3 @@
-
 #homepage.home .jumbotron
 {
 	margin: 3%;
@@ -20,7 +19,7 @@
 #brewing.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/beer.jpeg");
+	background-image: url("../pics/craft-beer.jpg");
 	background-position: center;
 	background-size: cover;
 }
