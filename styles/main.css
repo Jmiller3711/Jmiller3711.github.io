@@ -1,7 +1,7 @@
 #homepage.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/colorado.jpg");
+	background-image: url("../pics/Colorado.jpg");
 	background-position: center;
 	background-size: cover;
 }
