@@ -3,12 +3,13 @@
 <html>
 	<head>
 		<title>Jordan's Website</title>
-		<link href="styles/main.css" rel="stylesheet" type="text/css"/>
 		<!-- Bootstrap stuff -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+		<link href="styles/main.css" rel="stylesheet" type="text/css"/>
+
 	</head>
 	<body>
-
 		<!-- Navigation bar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="#">Navbar</a>
@@ -59,17 +60,43 @@
 			</div>
 		</nav>
 
-		<div class="container">
-			<h1>Yo, welcome to this website!</h1>
-			<p>I know this website is probably the coolest website you have <em>ever</em> been to, but don't poo your pants okay?</p>
-			<h3>Three equal columns</h3>
-			<p>Get three equal-width columns <strong>starting at desktops and scaling to large desktops</strong>. On mobile devices, tablets and below, the columns will automatically stack.</p>
-			<div class="row">
-				<div class="col-md-4">.col-md-4</div>
-				<div class="col-md-4">.col-md-4</div>
-				<div class="col-md-4">.col-md-4</div>
-			</div>
+		<div class="jumbotron">
+			<h1 class="display-3">Jmiller3711.com</h1>
+			<p class="lead">Showcasing my hobbies, interests, and services.</p>
+			<hr class="my-4">
+			<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			<p class="lead">
+			<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			</p>
+		</div>
 
+		<div class="container.fluid">
+			<div class="row">
+				<div class="col-md">
+					<div class="myPanel">
+						<div class="myPanelHeader">Brewing</div>
+						<div class="myPanelBody">
+							<p>Panel content goes here</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="myPanel">
+						<div class="myPanelHeader">Sports</div>
+						<div class="myPanelBody">
+							<p>Panel content goes here</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md">
+					<div class="myPanel">
+						<div class="myPanelHeader">Tutoring</div>
+						<div class="myPanelBody">
+							<p>Panel content goes here</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Bootstrap stuff -->

@@ -1,10 +1,32 @@
 body
 {
-	background: blue;
+	background-color: #f2f2f2;
 }
 
-
-p
+.jumbotron
 {
-	background: #1a75ff;
+	margin: 3%;
 }
+
+.myPanel 
+{
+	border: 1px solid #727272;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0px 0px 10px #ccc;
+	margin: 3%;
+}
+
+.myPanel .myPanelHeader 
+{
+	background: #cecece;
+	border-radius: 5px 5px 0px 0px;
+	color: #727272; 
+	padding: 10px 20px;
+	text-align: center;
+}
+
+.myPanel .myPanelBody 
+{
+	padding: 10px 20px;
+}
+
