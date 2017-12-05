@@ -41,6 +41,29 @@
 }
 
 
+#calculus.home .container .card
+{
+	margin: 1%;
+}
+
+#calculus.home .card-body ul 
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#calculus.home .card-title 
+{
+	text-align: center;
+}
+
+#calculus.home .card-body .btn
+{
+	margin: 1%;
+	text-align: left;
+}
+
 #tutoring.home .jumbotron
 {
 	margin: 3%;
