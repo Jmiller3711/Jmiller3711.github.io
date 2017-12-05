@@ -7,8 +7,16 @@
 	}
 	navHandler.el = navHandler.el[0];
 	navHandler.gotNav = function(event) {
+		var navbarActive = this.el.getAttribute('navbar-active');
 		var parentDiv = document.createElement('div');
 		parentDiv.innerHTML = event.target.response;
+		if(navbarActive){
+			var activeEls = parentDiv.querySelectorAll(navbarActive);
+			var i;
+			for(i=0; i<activeEls.length; i++){
+				activeEls[i].classList.add('active');
+			}
+		}
 		this.el.replaceWith(parentDiv);
 		console.log(this.responseText);
 	}
