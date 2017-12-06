@@ -18,7 +18,6 @@
 			}
 		}
 		this.el.replaceWith(parentDiv);
-		console.log(this.responseText);
 	}
 	var oReq = new XMLHttpRequest();
 	oReq.addEventListener("load", navHandler.gotNav.bind(navHandler));
