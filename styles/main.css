@@ -40,6 +40,10 @@
 	color:white;
 }
 
+#brewing.tools .card
+{
+	margin: 1%;
+}
 
 #calculus.home .container .card
 {
