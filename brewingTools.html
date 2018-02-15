@@ -67,7 +67,13 @@
 									<div class="card-body">
 										<h5 class="card-title">Hop Addition 1</h5>
 										<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-										<p class="card-text">Countdown timer goes here</p>
+										<p class="card-text"><label id="hop1Label">hop1Labell</label></p>
+											<p>
+													<button type="button" class="btn btn-info" onClick='add5Minutes()'>+5</button>
+													<button type="button" class="btn btn-info" onClick='add1Minute()'>+1</button>
+													<button type="button" class="btn btn-info" onClick='subtract5Minutes()'>-5</button>
+													<button type="button" class="btn btn-info" onClick='subtract1Minute()'>-1</button>
+											</p>
 										<button type="button" class="btn btn-success" onClick='startHopOneTimer()'>Start</button>
 										<button type="button" class="btn btn-danger" onClick='resetHopOneTimer()'>Reset</button>
 									</div>
