@@ -29,10 +29,9 @@ function subtract1Minute()
 function startHopOneTimer()
 {
     console.log("Hop 1 timer started");
-    
 
     var totalSeconds = HopOneRemainingMinutes * 60 + HopOneRemainingSeconds;
-    
+    hop1Label.innerText = document.querySelector("#hop1Label");
     HopAdditionOneTimer = setTimeout(alarmHopOne, totalSeconds * 1000);
     HopAdditionOneTicker = setInterval(tickHopeOne, 1000);
 }
@@ -40,7 +39,8 @@ function startHopOneTimer()
 function tickHopeOne()
 {
     console.log(HopOneRemainingSeconds);
-    hop1Label.innerText = document.querySelector("#hop1Label");
+    
+    hop1Label.innerText = minsLeft + ":" + secsLeft;
     HopOneRemainingSeconds--;
     if(HopOneRemainingSeconds < 0)
     {
