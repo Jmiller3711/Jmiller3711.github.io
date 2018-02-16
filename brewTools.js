@@ -75,7 +75,9 @@ function alarmHopOne()
     setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 1);
 }
 
-(function()
+function everythingIsLoaded()
 {
     hop1Label = document.querySelector("#hop1Label");
-})();
+}
+
+document.addEventListener("DOMContentLoaded", everythingIsLoaded);
