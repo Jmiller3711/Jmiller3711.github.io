@@ -31,16 +31,15 @@ function startHopOneTimer()
     console.log("Hop 1 timer started");
 
     var totalSeconds = HopOneRemainingMinutes * 60 + HopOneRemainingSeconds;
-    hop1Label.innerText = document.querySelector("#hop1Label");
+    everythingIsLoaded();
     HopAdditionOneTimer = setTimeout(alarmHopOne, totalSeconds * 1000);
-    HopAdditionOneTicker = setInterval(tickHopeOne, 1000);
+    HopAdditionOneTicker = setInterval(tickHopOne, 1000);
 }
 
-function tickHopeOne()
+function tickHopOne()
 {
     console.log(HopOneRemainingSeconds);
-    
-    hop1Label.innerText = minsLeft + ":" + secsLeft;
+    hop1Label.innerText = HopOneRemainingMinutes + ":" + HopOneRemainingSeconds;
     HopOneRemainingSeconds--;
     if(HopOneRemainingSeconds < 0)
     {
@@ -70,4 +69,9 @@ function alarmHopOne()
     audio.play();
 
     setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 1);
+}
+
+function everythingIsLoaded()
+{
+    document.querySelector("#hop1Label")
 }
