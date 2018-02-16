@@ -1,7 +1,7 @@
 #homepage.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/Colorado.jpg");
+	background-image: url("../pics/blue_and_red_mix_detail.jpg");
 	background-position: center;
 	background-size: cover;
 }
@@ -74,6 +74,15 @@
 	background-image: url("../pics/chalkboard.jpg");
 	background-position: bottom;
 	background-size: cover;
+}
+
+#brewingHistory.home .jumbotron
+{
+	margin: 3%;
+	background-image: url("../pics/beerKegs.jpg");
+	background-position: center;
+	background-size: cover;
+	color: white
 }
 
 #tutoring.home p

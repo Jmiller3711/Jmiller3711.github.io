@@ -18,7 +18,7 @@ function add1Minute()
 
 function subtract5Minutes()
 {
-    HopOneRemainingMinutes = HopOneRemainingMinutes - 5;
+    OneRemainingMinutes = HopOneRemainingMinutes - 5;
 }
 
 function subtract1Minute()
@@ -58,6 +58,7 @@ function resetHopOneTimer()
     clearInterval(HopAdditionOneTicker);
     HopOneRemainingMinutes = 0;
     HopOneRemainingSeconds = 0;
+    hop1Label = 0;
     console.log("Hop 1 timer has reset");
 }
 
@@ -73,5 +74,5 @@ function alarmHopOne()
 
 function everythingIsLoaded()
 {
-    document.querySelector("#hop1Label")
+    hop1Label = document.querySelector("#hop1Label");
 }
