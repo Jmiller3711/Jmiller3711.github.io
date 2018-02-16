@@ -13,6 +13,28 @@
 		<!-- Navigation bar -->
 		<script src="/navbar.js" navbar-active=".brewActive,.brewToolsActive"></script>
 
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body" style="text-align:center">
+							<h5 class="card-title">Mash/Boil Timer</h5>
+							<p class="card-text"><h2><label id="boilLabel" >0 min : 0 sec</label></h2></p>
+								<p>
+									<button type="button" class="btn btn-info" onClick='addSubtractBoilMinutes(5)'>+5</button>
+									<button type="button" class="btn btn-info" onClick='addSubtractBoilMinutes(1)'>+1</button>
+									<button type="button" class="btn btn-info" onClick='addSubtractBoilMinutes(-5)'>-5</button>
+									<button type="button" class="btn btn-info" onClick='addSubtractBoilMinutes(-1)'>-1</button>
+								</p>
+							<button type="button" class="btn btn-success" onClick='startBoilTimer()'>Start</button>
+							<button type="button" class="btn btn-danger" onClick='resetBoilTimer()'>Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 				<div class="row">
 					<div class="col-sm">
@@ -35,7 +57,7 @@
 						<div class="card" style="width: 18rem;">
 							<div class="card-body" style="text-align:center">
 								<h5 class="card-title">Hop Addition 2</h5>
-								<p class="card-text"><h2><label id="hop1Label" >0 min : 0 sec</label></h2></p>
+								<p class="card-text"><h2><label id="hop2Label" >0 min : 0 sec</label></h2></p>
 									<p>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop2Minutes(5)'>+5</button>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop2Minutes(1)'>+1</button>
@@ -51,15 +73,15 @@
 						<div class="card" style="width: 18rem;">
 							<div class="card-body" style="text-align:center">
 								<h5 class="card-title">Hop Addition 3</h5>
-								<p class="card-text"><h2><label id="hop1Label" >0 min : 0 sec</label></h2></p>
+								<p class="card-text"><h2><label id="hop3Label" >0 min : 0 sec</label></h2></p>
 									<p>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop3Minutes(5)'>+5</button>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop3Minutes(1)'>+1</button>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop3Minutes(-5)'>-5</button>
 										<button type="button" class="btn btn-info" onClick='addSubtractHop3Minutes(-1)'>-1</button>
 									</p>
-								<button type="button" class="btn btn-success" onClick='startHop1Timer()'>Start</button>
-								<button type="button" class="btn btn-danger" onClick='resetHop1Timer()'>Reset</button>
+								<button type="button" class="btn btn-success" onClick='startHop3Timer()'>Start</button>
+								<button type="button" class="btn btn-danger" onClick='resetHop3Timer()'>Reset</button>
 							</div>
 						</div>
 					</div>

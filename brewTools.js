@@ -1,5 +1,11 @@
 console.log("brewTools.js init");
 
+var BoilTimer = undefined;
+var BoilTicker = undefined;
+var BoilRemainingMinutes = 0;
+var BoilRemainingSeconds = 0;
+var boilLabel = undefined;
+
 var HopAddition1Timer = undefined;
 var HopAddition1Ticker = undefined;
 var Hop1RemainingMinutes = 0;
@@ -19,6 +25,57 @@ var Hop3RemainingSeconds = 0;
 var hop3Label = undefined;
 
 var audio = new Audio('./audio/timerAlarm.mp3');
+
+//Boil Timer
+function addSubtractBoilMinutes(mins)
+{
+    BoilRemainingMinutes = BoilRemainingMinutes + mins;
+    boilLabel.innerText = BoilRemainingMinutes + " min : " + BoilRemainingSeconds + " sec";
+}
+
+function startBoilTimer()
+{
+    console.log("Boil timer started");
+
+    var totalSeconds = BoilRemainingMinutes * 60 + BoilRemainingSeconds;
+    BoilTimer = setTimeout(alarmBoil, totalSeconds * 1000);
+    BoilTicker = setInterval(tickBoil, 1000);
+}
+
+function tickBoil()
+{
+    console.log(BoilRemainingSeconds);
+    boilLabel.innerText = BoilRemainingMinutes + " min : " + BoilRemainingSeconds + " sec";
+    BoilRemainingSeconds--;
+    if(BoilRemainingSeconds < 0)
+    {
+        BoilRemainingSeconds = 59;
+        BoilRemainingMinutes--;
+        if (BoilRemainingMinutes < 0)
+        {
+            clearInterval(BoilTicker);
+        }
+    }
+}
+
+function resetBoilTimer()
+{
+    clearTimeout(BoilTimer);
+    clearInterval(BoilTicker);
+    BoilRemainingMinutes = 0;
+    BoilRemainingSeconds = 0;
+    BoilLabel.innerText = BoilRemainingMinutes + " min : " + BoilRemainingSeconds + " sec";
+    console.log("Hop 1 timer has reset");
+}
+
+function alarmBoil()
+{
+    console.log("Hop 1 timer done");
+    audio.play();
+    //setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 3);
+}
+
+
 
 //Hop Addition 1 Timer
 function addSubtractHop1Minutes(mins)
@@ -66,7 +123,7 @@ function alarmHop1()
 {
     console.log("Hop 1 timer done");
     audio.play();
-    setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 3);
+    //setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 3);
 }
 
 //Hop Addition 2 Timer
@@ -115,7 +172,7 @@ function alarmHop2()
 {
     console.log("Hop 2 timer done");
     audio.play();
-    setTimeout(function(){ alert("Hop 2 Timer has Finshed!"); }, 3);
+    //setTimeout(function(){ alert("Hop 2 Timer has Finshed!"); }, 3);
 }
 
 //Hop Addition 3 Timer
@@ -164,12 +221,13 @@ function alarmHop3()
 {
     console.log("Hop 3 timer done");
     audio.play();
-    setTimeout(function(){ alert("Hop 3 Timer has Finshed!"); }, 3);
+    //setTimeout(function(){ alert("Hop 3 Timer has Finshed!"); }, 3);
 }
 
 //Common 
 function everythingIsLoaded()
 {
+    boilLabel = document.querySelector("#boilLabel");
     hop1Label = document.querySelector("#hop1Label");
     hop2Label = document.querySelector("#hop2Label");
     hop3Label = document.querySelector("#hop3Label");
