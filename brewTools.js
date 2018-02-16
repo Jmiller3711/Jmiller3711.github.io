@@ -8,21 +8,25 @@ var hop1Label = document.querySelector("#hop1Label")
 
 function add5Minutes()
 {
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     HopOneRemainingMinutes = HopOneRemainingMinutes + 5;
 }
 
 function add1Minute()
 {
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     HopOneRemainingMinutes = HopOneRemainingMinutes + 1;
 }
 
 function subtract5Minutes()
 {
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     OneRemainingMinutes = HopOneRemainingMinutes - 5;
 }
 
 function subtract1Minute()
 {
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     HopOneRemainingMinutes = HopOneRemainingMinutes - 1;
 }
 
@@ -39,7 +43,7 @@ function startHopOneTimer()
 function tickHopOne()
 {
     console.log(HopOneRemainingSeconds);
-    hop1Label.innerText = HopOneRemainingMinutes + ":" + HopOneRemainingSeconds;
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     HopOneRemainingSeconds--;
     if(HopOneRemainingSeconds < 0)
     {
@@ -58,7 +62,7 @@ function resetHopOneTimer()
     clearInterval(HopAdditionOneTicker);
     HopOneRemainingMinutes = 0;
     HopOneRemainingSeconds = 0;
-    hop1Label = 0;
+    hop1Label.innerText = HopOneRemainingMinutes + " min : " + HopOneRemainingSeconds + " sec";
     console.log("Hop 1 timer has reset");
 }
 
