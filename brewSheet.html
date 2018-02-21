@@ -43,9 +43,9 @@
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Pre-heat mash tun: While strike water is heating, bring a couple gallons of water to a boil and place in Mash tun to preheat. Dump this water before adding strike water</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Once the target strike water temperature is reached, begin to mix your strike water and your milled grains into the Mash Tun. Be sure to stagger the water and grain additions, and stir as you go to break up any clumping</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Stir the mash and then set a timer to mash for 60 minutes (typical) at the specified temperature, or until desired conversion is reached</li>
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Initial Mash Temperature</strong></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Initial Mash Temperature</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  During the mash, begin heating sparge water</li>
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Initial Mash Temperature</strong></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Final Mash Temperature</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
             </ul>
         </div>
 
@@ -61,14 +61,14 @@
         <div class="card" style="width: 25rem;">
             <div class="card-header">Boiling</div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Pre-Boil Specific Gravity</strong> (A good estimate is gaining ~10 points after a 60-minute boil for a 5-gallon batch)</li>
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Pre-Boil Volume</strong></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Pre-Boil Specific Gravity</strong> (A good estimate is gaining ~10 points after a 60-minute boil for a 5-gallon batch)<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Pre-Boil Volume</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Turn on your burner and begin heating the wort to a boil. Be careful during this step, as boil-overs are extremely common.</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Once a boil is reached, set a timer for 60 minutes (typical) and begin following the hop schedule.</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Pre heat the wort chiller at the 30-minute mark. This is done to avoid killing the boil</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Sterilize the pre heated wort chiller by placing it into the boil kettle during the last 15 minutes of the boil.</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  When your timer goes off, turn off the heat</li>
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Post-Boil Volume</strong></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Post-Boil Volume</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
             </ul>
         </div>
 
@@ -79,7 +79,7 @@
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Cool down the wort as fast as possible to prevent infection from outside yeast and/or bacteria. Start chilling wort until temperature reaches 70-80 degrees</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Before transferring to fermenter, start a whirlpool to leave behind any solids inside the boil kettle</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Use a sanitized siphon and/or funnel to transfer wort into a primary fermenter</li>
-                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Original Specific Gravity</strong></li>
+                <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Original Specific Gravity</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Add yeast (sanitize first) to the fermenter</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Vigorously rock the fermentation vessel back and forth for several minutes to create bubbles and introduce oxygen to promote yeast health</li>
                 <li class="list-group-item"><input id="checkBox" type="checkbox">  Place stanitized stopper and airlock on fermenter and store in a dark area at the appropriate temperature</li>
@@ -90,6 +90,8 @@
             <label for="exampleFormControlTextarea1">Brew Day Notes:</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block">Submit Brew Sheet</button>
 
 
 		<!-- Bootstrap stuff -->
