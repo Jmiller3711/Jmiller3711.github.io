@@ -75,8 +75,6 @@ function alarmBoil()
     //setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 3);
 }
 
-
-
 //Hop Addition 1 Timer
 function addSubtractHop1Minutes(mins)
 {
