@@ -120,6 +120,7 @@
 }
 
 
+/*====================contact====================*/
 
 #contact .card
 {
@@ -129,4 +130,12 @@
 #contact .card-img-top
 {
 	max-height: 250px;
+}
+
+
+/*====================projects====================*/
+
+#beerCaddy.home .container-fluid
+{
+	width: 85%;
 }
