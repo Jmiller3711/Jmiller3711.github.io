@@ -1,9 +1,10 @@
+/*====================homepage====================*/
 #homepage.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/blue_and_red_mix_detail.jpg");
+	background-image: url("../pics/polygonArt2.jpg");
 	background-position: center;
-	background-size: cover;
+	background-size: auto 100%;
 }
 
 #homepage.home .jumbotron p
@@ -18,10 +19,15 @@
 
 #homepage.home .card-img-top
 {
-	max-height: 195px;
+	max-height: 185px;
 }
 
+#homepage.home .container-fluid
+{
+	width: 75%;
+}
 
+/*====================brewing====================*/
 #brewing.home .jumbotron
 {
 	margin: 3%;
@@ -55,6 +61,21 @@
 	width: 100%;
 }
 
+#brewingHistory.home .jumbotron
+{
+	margin: 3%;
+	background-image: url("../pics/beerKegs.jpg");
+	background-position: center;
+	background-size: cover;
+	color: white
+}
+
+.brewingSchedule
+{
+	position: absolute;
+}
+
+/*====================calculus====================*/
 #calculus.home .container .card
 {
 	margin: 1%;
@@ -78,6 +99,7 @@
 	text-align: left;
 }
 
+/*====================tutoring====================*/
 #tutoring.home .jumbotron
 {
 	margin: 3%;
@@ -86,14 +108,6 @@
 	background-size: cover;
 }
 
-#brewingHistory.home .jumbotron
-{
-	margin: 3%;
-	background-image: url("../pics/beerKegs.jpg");
-	background-position: center;
-	background-size: cover;
-	color: white
-}
 
 #tutoring.home p
 {
@@ -105,10 +119,7 @@
 	color:white
 }
 
-.brewingSchedule
-{
-	position: absolute;
-}
+
 
 #contact .card
 {
