@@ -185,7 +185,7 @@
 	border-top: 1px solid;
 }
 
-#marchMadness.home .direction
+#marchMadness.home .alignMe
 {
 	text-align: center;
 }
@@ -194,6 +194,14 @@
 {
 	text-align: center;
 	background-color: rgb(41, 224, 41);
+	border: 1px solid;
+}
+
+#marchMadness.home .champion
+{
+	text-align: center;
+	background-color: rgb(251, 255, 0);
+	border: 1px solid;
 }
 
 
