@@ -144,19 +144,56 @@
 #marchMadness.home .NW
 {
 	background-color: #4d94ff;
+	border: 1px solid;
 }
 
 #marchMadness.home .NE
 {
 	background-color: #ff8c1a;
+	border: 1px solid;
 }
 
 #marchMadness.home .SW
 {
 	background-color: #ff3300;
+	border: 1px solid;
 }
 
 #marchMadness.home .SE
 {
 	background-color: #80ffff;
+	border: 1px solid;
 }
+
+#marchMadness.home .rightBorder
+{
+	border-right: 1px solid;
+}
+
+#marchMadness.home .leftBorder
+{
+	border-left: 1px solid;
+}
+
+#marchMadness.home .bottomBorder
+{
+	border-bottom: 1px solid;
+}
+
+#marchMadness.home .topBorder
+{
+	border-top: 1px solid;
+}
+
+#marchMadness.home .direction
+{
+	text-align: center;
+}
+
+#marchMadness.home .championship
+{
+	text-align: center;
+	background-color: rgb(41, 224, 41);
+}
+
+
