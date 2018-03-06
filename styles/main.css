@@ -139,3 +139,24 @@
 {
 	width: 85%;
 }
+
+/*====================projects====================*/
+#marchMadness.home .NW
+{
+	background-color: #4d94ff;
+}
+
+#marchMadness.home .NE
+{
+	background-color: #ff8c1a;
+}
+
+#marchMadness.home .SW
+{
+	background-color: #ff3300;
+}
+
+#marchMadness.home .SE
+{
+	background-color: #80ffff;
+}
