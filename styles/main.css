@@ -204,10 +204,28 @@
 	border: 1px solid;
 }
 
-#marchMadness.home .input
+#marchMadness.home .inputField
 {
 	background-color: rgb(251, 255, 0);
-	border: 1px solid;
+	text-align: center;
+	width: 100%;
+}
+
+#marchMadness.home .inputCell
+{
+	width: 50px;
+}
+
+#marchMadness.home .dropDown
+{
+	margin: 1%;
+}
+
+#marchMadness.home .card
+{
+	text-align: center;
+	margin: 1%;
+	padding: 1;
 }
 
 
