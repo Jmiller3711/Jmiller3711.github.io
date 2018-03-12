@@ -12,23 +12,42 @@
 	<script>
 		function loadData(year) 
 		{
-			$.getScript('https://script.google.com/macros/s/AKfycbyM7OgTNTVvxiaf0lrXSzJfu908tkGYYY_swr1g3f3_TJblbQar/exec?callback=gotData&year='+year);
+			$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year='+year);
 		}
 		function gotData(d)
 		{
 			console.log(d);
 			if(d.success)
 			{
-				console.log(d.data.south);
+				console.log(d.data);
+
+				for (var seed = 0; seed < d.data.length; seed++)
+				{
+					$("." + d.data[seed].regionABVR+ "." + d.data[seed].seed)
+					.html(d.data[seed].name + " (" + d.data[seed].seed + ")")
+					.data("team",d.data[seed]); //puts team on html data
+				}
 			}
 		}
 		$(function()
 		{
-			$("#thebutton").click(function()
+			$("#resetButton").click(function()
 			{
-				loadData(2016);
+				$(".inputField").val(""); //sets value
+			});
+			$("select#stat").change(function()
+			{
+				console.log($(this).val()); //returns value
+				var stat = $(this).val();
+				$(".r1").each(function()
+              {
+				var teamInput = $(this).prev().find("input");
+				if (!teamInput.length) teamInput = $(this).next().find("input");
+				teamInput.val($(this).data("team")[stat]);
+				});
 			})
-		})
+			loadData();
+		});	
 	</script>
 
   	<body id="marchMadness" class="home">
@@ -38,21 +57,21 @@
 		<div class="card">
 			<div class="card-body">
 				<h1 class="card-title">NCAA March Madness Bracket Builder</h1>
-				<p class="card-text">This tool allows you to load or input data for a specific year's NCAA Tournament. Select the year and statistic you would like to process, then hit "RUMBLE".</br>
-				For example, if you want to see which team from 2016 would win based on their BPI (Basketball Power Index), select 2016, BPI, then hit RUMBLE. </br>
-				If you would like to enter your own data to the bracket, first select a year to load team names, enter data for all 64 teams, then hit RUMBLE.  </br>
+				<p class="card-text">This tool allows you to load or input data for a specific year's NCAA Tournament. Select the year and statistic you would like to process, then let's get ready to "RUMBLE".</br>
+				For example, if you want to see which team from 2016 would win based on their BPI (Basketball Power Index), select 2016, BPI, then press the "RUMBLE" button. </br>
+				If you would like to enter your own data to the bracket, first select a year to load team names, enter data for all 64 teams, then press "RUMBLE".  </br>
 			    The "Reset" button will clear all input fields.</p>
 	
 				<p><strong>Select Year: </strong>
 					<select>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
 						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
 					</select>
 				</p>
 
 				<p><strong>Select Stat: </strong>
-					<select>
+					<select id = "stat">
 						<option value="user">User Input</option>
 						<option value="bpi">BPI</option>
 						<option value="sos">SOS</option>
@@ -62,10 +81,8 @@
 
 				<p>
 					<button type="button" class="btn btn-info">RUMBLE</button>
-					<button type="button" class="btn btn-danger" onClick='resetBoilTimer()'>Reset</button>
+					<button type="button" class="btn btn-danger" id="resetButton">CLEAR</button>
 				</p>
-				<button id='thebutton'>test</button>
-				
 			</div>
 		</div>
 
@@ -105,8 +122,8 @@
 				<td class="alignMe">Load/Enter</td>
 			</tr>
 			<tr>
-				<td class = "inputCell"><input class = "inputField" type="text" value="1 seed"></td>
-				<td class = "NW">1 seed</td>
+				<td class = "inputCell"><input class = "inputField" type="text" value=""></td>
+				<td class = "NW 1 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -118,8 +135,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "NE">1 seed</td>
-				<td class = "inputCell"><input class = "inputField" type="text" value="1 seed"></td>
+				<td class = "NE 1 r1"></td>
+				<td class = "inputCell"><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -139,8 +156,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="16 seed"></td>
-				<td class="NW">16 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 16 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -152,8 +169,8 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">16 seed</td>
-				<td><input class = "inputField" type="text" value="16 seed"></td>
+				<td class="NE 16 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -173,8 +190,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
-				<td class="NW">8 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 8 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -186,13 +203,13 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">8 seed</td>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
+				<td class="NE 8 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
-				<td class="NW">8 or 9</td>
+				<td class="NW">8or9</td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -202,13 +219,13 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">8 or 9</td>
+				<td class="NE">8or9</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input  class = "inputField" type="text" value="9 seed"></td>
-				<td class="NW">9 seed</td>
+				<td><input  class = "inputField" type="text" value=""></td>
+				<td class="NW 9 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -220,8 +237,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="NE">9 seed</td>
-				<td><input class = "inputField"  type="text" value="9 seed"></td>
+				<td class="NE 9 r1"></td>
+				<td><input class = "inputField"  type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -241,8 +258,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input  class = "inputField" type="text" value="5 seed"></td>
-				<td class="NW">5 seed</td>
+				<td><input  class = "inputField" type="text" value=""></td>
+				<td class="NW 5 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -254,13 +271,13 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="NE">5 seed</td>
-				<td><input class = "inputField"  type="text" value="5 seed"></td>
+				<td class="NE 5 r1"></td>
+				<td><input class = "inputField"  type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
-				<td class="NW">5 or 12</td>
+				<td class="NW">5or12</td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -270,13 +287,13 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">5 or 12</td>
+				<td class="NE">5or12</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField"  type="text" value="5 seed"></td>
-				<td class="NW">12 seed</td>
+				<td><input class = "inputField"  type="text" value=""></td>
+				<td class="NW 12 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -288,14 +305,14 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">12 seed</td>
-				<td><input class = "inputField"  type="text" value="5 seed"></td>
+				<td class="NE 12 r1"></td>
+				<td><input class = "inputField"  type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class="NW">5/12 or 4/13</td>
+				<td class="NW">5/12or4/13</td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -303,14 +320,14 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">5/12 or 4/13</td>
+				<td class="NE">5/12or4/13</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input  class = "inputField" type="text" value="4 seed"></td>
-				<td class="NW">4 seed</td>
+				<td><input  class = "inputField" type="text" value=""></td>
+				<td class="NW 4 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -322,8 +339,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">4 seed</td>
-				<td><input  class = "inputField" type="text" value="4 seed"></td>
+				<td class="NE 4 r1"></td>
+				<td><input  class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -343,8 +360,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input  class = "inputField" type="text" value="13 seed"></td>
-				<td class="NW">13 seed</td>
+				<td><input  class = "inputField" type="text" value=""></td>
+				<td class="NW 13 r1"></td>
 				<td></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -356,8 +373,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class="NE">13 seed</td>
-				<td><input  class = "inputField" type="text" value="13 seed"></td>
+				<td class="NE 13 r1"></td>
+				<td><input  class = "inputField" type="text" value=""></td>
 			<tr>
 				<td></td>
 				<td></td>
@@ -376,8 +393,8 @@
 				<td></td>
 			</tr>    
 			<tr>
-				<td><input class = "inputField" type="text" value="6 seed"></td>
-				<td class="NW">6 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 6 r1"></td>
 				<td></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -389,8 +406,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class="NE">6 seed</td>
-				<td><input class = "inputField" type="text" value="6 seed"></td>
+				<td class="NE 6 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -410,8 +427,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="11 seed"></td>
-				<td class="NW">11 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 11 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -423,8 +440,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">11 seed</td>
-				<td><input class = "inputField" type="text" value="11 seed"></td>
+				<td class="NE 11 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -444,8 +461,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="3 seed"></td>
-				<td class="NW">3 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 3 r1"></td>
 				<td class = "rightBorder" ></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -457,8 +474,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">3 seed</td>
-				<td><input class = "inputField" type="text" value="3 seed"></td>
+				<td class="NE 3 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -478,8 +495,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="14 seed"></td>
-				<td class="NW">14 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 14 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -491,8 +508,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="NE">14 seed</td>
-				<td><input class = "inputField" type="text" value="14 seed"></td>
+				<td class="NE 14 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -512,8 +529,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="7 seed"></td>
-				<td class="NW">7 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 7 r1"></td>
 				<td ></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -525,8 +542,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="NE">7 seed</td>
-				<td><input class = "inputField" type="text" value="7 seed"></td>
+				<td class="NE 7 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -546,8 +563,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="10 seed"></td>
-				<td class="NW">10 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 10 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -559,8 +576,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">10 seed</td>
-				<td><input class = "inputField" type="text" value="10 seed"></td>
+				<td class="NE 10 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -580,8 +597,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="2 seed"></td>
-				<td class="NW">2 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 2 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -593,8 +610,8 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="NE">2 seed</td>
-				<td><input class = "inputField" type="text" value="2 seed"></td>
+				<td class="NE 2 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -614,8 +631,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="15 seed"></td>
-				<td class="NW">15 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="NW 15 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -627,8 +644,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class="NE">15 seed</td>
-				<td><input class = "inputField" type="text" value="15 seed"></td>
+				<td class="NE 15 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -672,7 +689,7 @@
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td></td>
-				<td>stat</td>
+				<td class = "alignMe"> <br></td>
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td></td>
@@ -682,8 +699,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="1 seed"></td>
-				<td class = "SW">1 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class = "SW 1 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -695,8 +712,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "SE">1 seed</td>
-				<td><input class = "inputField" type="text" value="1 seed"></td>
+				<td class = "SE 1 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -716,8 +733,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField"  type="text" value="16 seed"></td>
-				<td class="SW">16 seed</td>
+				<td><input class = "inputField"  type="text" value=""></td>
+				<td class="SW 16 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -729,8 +746,8 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">16 seed</td>
-				<td><input class = "inputField" type="text" value="1 seed"></td>
+				<td class="SE 16 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -750,8 +767,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
-				<td class="SW">8 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 8 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -763,8 +780,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">8 seed</td>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
+				<td class="SE 8 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -784,8 +801,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
-				<td class="SW">9 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 9 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -797,8 +814,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="SE">9 seed</td>
-				<td><input class = "inputField" type="text" value="8 seed"></td>
+				<td class="SE 9 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -818,8 +835,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="5 seed"></td>
-				<td class="SW">5 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 5 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -831,8 +848,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="SE">5 seed</td>
-				<td><input class = "inputField" type="text" value="5 seed"></td>
+				<td class="SE 5 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -852,8 +869,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField"  type="text" value="12 seed"></td>
-				<td class="SW">12 seed</td>
+				<td><input class = "inputField"  type="text" value=""></td>
+				<td class="SW 12 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -865,8 +882,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">12 seed</td>
-				<td><input class = "inputField"  type="text" value="12 seed"></td>
+				<td class="SE 12 r1"></td>
+				<td><input class = "inputField"  type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -886,8 +903,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="12 seed"></td>
-				<td class="SW">4 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 4 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -899,8 +916,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">4 seed</td>
-				<td><input class = "inputField" type="text" value="12 seed"></td>
+				<td class="SE 4 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -920,8 +937,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="13 seed"></td>
-				<td class="SW">13 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 13 r1"></td>
 				<td></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -933,8 +950,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class="SE">13 seed</td>
-				<td><input class = "inputField" type="text" value="13 seed"></td>
+				<td class="SE 13 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			<tr>
 				<td></td>
 				<td></td>
@@ -953,8 +970,8 @@
 				<td></td>
 			</tr>    
 			<tr>
-				<td><input class = "inputField" type="text" value="13 seed"></td>
-				<td class="SW">6 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 6 r1"></td>
 				<td></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -966,8 +983,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class="SE">6 seed</td>
-				<td><input class = "inputField" type="text" value="13 seed"></td>
+				<td class="SE 6 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -987,8 +1004,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="11 seed"></td>
-				<td class="SW">11 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 11 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
@@ -1000,8 +1017,8 @@
 				<td class = "leftBorder"></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">11 seed</td>
-				<td><input class = "inputField" type="text" value="11 seed"></td>
+				<td class="SE 11 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1021,8 +1038,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="3 seed"></td>
-				<td class="SW">3 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 3 r1"></td>
 				<td class = "rightBorder" ></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -1034,8 +1051,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">3 seed</td>
-				<td><input class = "inputField" type="text" value="3 seed"></td>
+				<td class="SE 3 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1055,8 +1072,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="14 seed"></td>
-				<td class="SW">14 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 14 r1"></td>
 				<td></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
@@ -1068,8 +1085,8 @@
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="SE">14 seed</td>
-				<td><input class = "inputField" type="text" value="14 seed"></td>
+				<td class="SE 14 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 				<tr>
 				<td></td>
@@ -1089,8 +1106,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="7 seed"></td>
-				<td class="SW">7 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 7 r1"></td>
 				<td ></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -1102,8 +1119,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td></td>
-				<td class="SE">7 seed</td>
-				<td><input class = "inputField" type="text" value="7 seed"></td>
+				<td class="SE 7 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1123,8 +1140,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="10 seed"></td>
-				<td class="SW">10 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 10 r1"></td>
 				<td class = "rightBorder"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
@@ -1136,8 +1153,8 @@
 				<td></td>
 				<td class = "leftBorder"></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">10 seed</td>
-				<td><input class = "inputField" type="text" value="10 seed"></td>
+				<td class="SE 10 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1157,8 +1174,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="2 seed"></td>
-				<td class="SW">2 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 2 r1"></td>
 				<td class = "rightBorder"></td>
 				<td></td>
 				<td></td>
@@ -1170,8 +1187,8 @@
 				<td></td>
 				<td></td>
 				<td class = "leftBorder"></td>
-				<td class="SE">2 seed</td>
-				<td><input class = "inputField" type="text" value="2 seed"></td>
+				<td class="SE 2 r1"></td>
+				<td><input class = "inputField" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1191,8 +1208,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value="15 seed"></td>
-				<td class="SW">15 seed</td>
+				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SW 15 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -1204,8 +1221,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class="SE">15 seed</td>
-				<td><input class = "inputField"  type="text" value="15 seed"></td>
+				<td class="SE 15 r1"></td>
+				<td><input class = "inputField"  type="text" value=""></td>
 			</tr>
 			<tr>
 				<td></td>
