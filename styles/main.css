@@ -256,3 +256,16 @@
 	border: none;
 }
 
+#marchMadness.home .championship .dropdown
+{
+	width: 100%;
+	background-color:  rgb(41, 224, 41);;
+	border: none;
+}
+
+#marchMadness.home .champion .dropdown
+{
+	width: 100%;
+	background-color:  rgb(251, 255, 0);
+	border: none;
+}
