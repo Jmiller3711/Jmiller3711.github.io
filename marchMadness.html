@@ -1,677 +1,714 @@
 <!doctype html>
 
 <html>
-  	<head>
-    	<title>Jordan's Website</title>
-		<!-- Bootstrap stuff -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link href="styles/main.css" rel="stylesheet" type="text/css"/>
-	</head>
-	  
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	<!-- <script src="./marchMadness.js"></script> -->
-	<script>
-		function loadData(year) 
-		{
-			$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year='+year);
-		}
-		function gotData(d)
-		{
-			console.log(d);
-			if(d.success)
-			{
-				console.log(d.data);
 
-				for (var seed = 0; seed < d.data.length; seed++)
-				{
-					$("." + d.data[seed].regionABVR+ "." + d.data[seed].seed)
+<head>
+	<title>Jordan's Website</title>
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+	<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ crossorigin="anonymous"></script>
+<!-- <script src="./marchMadness.js"></script> -->
+<script>
+	function loadData(year) {
+		$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year=' + year);
+	}
+	function gotData(d) {
+		console.log(d);
+		if (d.success) {
+			console.log(d.data);
+
+			for (var seed = 0; seed < d.data.length; seed++) {
+				$("." + d.data[seed].regionABVR + "." + d.data[seed].seed)
 					.html(d.data[seed].name + " (" + d.data[seed].seed + ")")
-					.data("team",d.data[seed]); //puts team on html data
-				}
+					.data("team", d.data[seed]); //puts team on html data
 			}
 		}
-		$(function()
-		{
-			$("#resetButton").click(function()
-			{
-				$(".inputField").val(""); //sets value
-			});
-			$("select#stat").change(function()
-			{
-				console.log($(this).val()); //returns value
-				var stat = $(this).val();
-				$(".r1").each(function()
-              {
+	}
+	$(function () {
+		$("#resetButton").click(function () {
+			$(".inputField").val(""); //sets value
+		});
+		$("select#stat").change(function () {
+			console.log($(this).val()); //returns value
+			var stat = $(this).val();
+			$(".r1").each(function () {
 				var teamInput = $(this).prev().find("input");
 				if (!teamInput.length) teamInput = $(this).next().find("input");
 				teamInput.val($(this).data("team")[stat]);
-				});
-			})
-			loadData();
-		});	
+			});
+		})
+		loadData();
+	});
 
-		function getStatFromInputField()
-		{
-			return 37;
-		}
+	function getStatFromInputField() {
+		return 37;
+	}
 
-		function onRumbleClick()
-		{
-			var allFirstRounds = []
+	function onRumbleClick() {
+		var allFirstRounds = []
 
-			//set the team's stat for each round one element based on what's in the input box which was loaded by switching the stat type dropdown or changed by the user
-			$(".r1").each(function(element){
+		//set the team's stat for each round one element based on what's in the input box which was loaded by switching the stat type dropdown or changed by the user
+		$(".r1").each(function (element) {
 			var teamData = $(this).data("team");
-			var stat = getStatFromInputField(); //use the function where we set the input of each round one team, but instead of setting the value, GET the value
+			var stat = 37; //use the function where we set the input of each round one team, but instead of setting the value, GET the value
 			//should be very similar
 			teamData.stat = stat;
 
-			var thisGuy = $(".dropdown option[value='seed"+teamData.seed + teamData.regionABVR+"']");
+			var thisGuy = $(".dropdown option[value='seed" + teamData.seed + teamData.regionABVR + "']");
 			thisGuy.data("team", teamData);
 			allFirstRounds.push(thisGuy);
-			})
+		})
 
-			computeRound(allFirstRounds);
-		}
+		computeRound(allFirstRounds);
 
-		function computeRound(TeamsToBattle)
-		{
-			var oldTeamsLength = TeamsToBattle.length;
-			//if we run out of teams we're done and can leave
-			if(TeamsToBattle.length == 0 ) return;
+	}
 
-			if(TeamsToBattle.length == 1) return; //I think that means we're at the championship and we're done.. need to test this
+	function computeRound(TeamsToBattle) {
+		var oldTeamsLength = TeamsToBattle.length;
+		//if we run out of teams we're done and can leave
+		if (TeamsToBattle.length == 0) return;
 
-			var firstGuy = TeamsToBattle[0];
-			//we grab the first thing in the array, which should be an option tag which should have a data-team attribute on it
+		if (TeamsToBattle.length == 1) return; //I think that means we're at the championship and we're done.. need to test this
 
-			var mySeed = firstGuy.data("team").seed;
-			var myRegion = firstGuy.data("team").regionABVR;
 
-			var MyOpponent = firstGuy.siblings().first();
+		var firstGuy = TeamsToBattle[0];
+		//we grab the first thing in the array, which should be an option tag which should have a data-team attribute on it
 
-			var mySlotIfIWin = firstGuy.index();  //this is the index of the option tag under the select which holds the dropdown for this bout
-			var hisSlotIfHeWins = MyOpponent.index();
 
-			var myName = firstGuy.data("team").name;
-			var hisName = MyOpponent.data("team").name;
-			console.log("Battling " + myRegion + "  " + mySeed + " vs " + MyOpponent.data("team").seed + "  -  " + myName + " vs " + hisName);
-			firstGuy.text(firstGuy.data("team").name);
-			MyOpponent.text(MyOpponent.data("team").name);
+		var mySeed = firstGuy.data("team").seed;
+		var myRegion = firstGuy.data("team").regionABVR;
 
-			var myStat = firstGuy.data("team").stat;
-			var hisStat = MyOpponent.data("team").stat;
 
-			//recreate TeamsToBattle without me or my opponent
-			var newTeamsToBattle = [];
-			for(var i=0; i<TeamsToBattle.length; i++)
-			{
-				if(!TeamsToBattle[i].data("team"))
-				{
-					var a=1;
-				}
+		var MyOpponent = firstGuy.siblings().first();
+
+		var mySlotIfIWin = firstGuy.index();  //this is the index of the option tag under the select which holds the dropdown for this bout
+		var hisSlotIfHeWins = MyOpponent.index();
+
+		var myName = firstGuy.data("team").name;
+		var hisName = MyOpponent.data("team").name;
+		console.log("Battling " + myRegion + "  " + mySeed + " vs " + MyOpponent.data("team").seed + "  -  " + myName + " vs " + hisName);
+		firstGuy.text(firstGuy.data("team").name);
+		MyOpponent.text(MyOpponent.data("team").name);
+
+		var myStat = firstGuy.data("team").stat;
+		var hisStat = MyOpponent.data("team").stat;
+
+		//recreate TeamsToBattle without me or my opponent
+		var newTeamsToBattle = [];
+		for (var i = 0; i < TeamsToBattle.length; i++) {
+			if (!TeamsToBattle[i].data("team")) {
+				var a = 1;
 			}
 			var teamSeed = TeamsToBattle[i].data("team").seed;
 			var teamRegion = TeamsToBattle[i].data("team").regionABVR;
 
-			if(teamRegion == myRegion && (teamSeed == mySeed || teamSeed == MyOpponent.data("team").seed))
-			{
-				//don't add the team
-			}
-			else 
-			{
+			if (teamRegion == myRegion && (teamSeed == mySeed || teamSeed == MyOpponent.data("team").seed)) { }
+			//don't add the team
+			else
 				newTeamsToBattle.push(TeamsToBattle[i]);
-			}
-
-			var winner;
-			if(myStat > hisStat)
-			{
-				//I win
-				firstGuy.parent()[0].selectedIndex = mySlotIfIWin;
-				winner = firstGuy.data("team");
-			} 
-			else 
-			{
-				//he wins
-				firstGuy.parent()[0].selectedIndex = hisSlotIfHeWins;
-				winner = MyOpponent.data("team");
-			}
-
-			//problem here, we need to figure out where the winner might get placed into the next bracket.. if you were very careful with your naming we'll be okay, but if you messed up at all it won't work at all
-			var winnerGoesHere = $(".dropdown option[value='"+firstGuy.val().slice(0,-2).replace('seed','') + 'or' + MyOpponent.val().replace('seed','')+"']"); // we concatted 1or16or8or9SW with 5or12or4or13SW  (but we removed the SW from teh first one)
-			winnerGoesHere.data("team", winner);
-
-			if(!winnerGoesHere.length)
-			{
-				console.log("Tried to put null winner");
-			}
-			newTeamsToBattle.push(winnerGoesHere);
-			console.log("Old " + oldTeamsLength + " New " + newTeamsToBattle.length);
-
-			//we removed two peolp from the array, and added one back.
-			//so if we re-call the function we expect there to be one less team to battle
-			//so eventually this 'loop' will end when we hit 0 (or 1) teams left
-			computeRound(newTeamsToBattle);
 		}
-	</script>
 
-  	<body id="marchMadness" class="home">
-		<!-- Navigation bar -->
-		<script src="/navbar.js" navbar-active=".sportsActive, .marchMadnessActive"></script>
 
-		<div class="card">
-			<div class="card-body">
-				<h1 class="card-title">NCAA March Madness Bracket Builder</h1>
-				<p class="card-text">This tool allows you to load or input data for a specific year's NCAA Tournament. Select the year and statistic you would like to process, then press "RUMBLE" to complete the bracket.</br>
-				For example, if you want to see which team from 2018 would win based on their RPI (Rating Percentage Index), select 2018, BPI, then press the "RUMBLE" button. </br>
+		var winner;
+		if (myStat > hisStat) {
+			//I win
+			firstGuy.parent()[0].selectedIndex = mySlotIfIWin;
+			winner = firstGuy.data("team");
+		} else {
+			//he wins
+			firstGuy.parent()[0].selectedIndex = hisSlotIfHeWins;
+			winner = MyOpponent.data("team");
+		}
+
+		//problem here, we need to figure out where the winner might get placed into the next bracket.. if you were very careful with your naming we'll be okay, but if you messed up at all it won't work at all
+		var winnerGoesHere = $(".dropdown option[value='" + firstGuy.val().slice(0, -2).replace('seed', '') + 'or' + MyOpponent.val().replace('seed', '') + "']"); // we concatted 1or16or8or9SW with 5or12or4or13SW  (but we removed the SW from teh first one)
+		winnerGoesHere.data("team", winner);
+
+		if (!winnerGoesHere.length) {
+			console.log("Tried to put null winner");
+		}
+		newTeamsToBattle.push(winnerGoesHere);
+		console.log("Old " + oldTeamsLength + " New " + newTeamsToBattle.length);
+
+
+		//we removed two peolp from the array, and added one back.
+		//so if we re-call the function we expect there to be one less team to battle
+		//so eventually this 'loop' will end when we hit 0 (or 1) teams left
+		computeRound(newTeamsToBattle);
+	}
+</script>
+
+<body id="marchMadness" class="home">
+	<!-- Navigation bar -->
+	<script src="/navbar.js" navbar-active=".sportsActive, .marchMadnessActive"></script>
+
+	<div class="card">
+		<div class="card-body">
+			<h1 class="card-title">NCAA March Madness Bracket Builder</h1>
+			<p class="card-text">This tool allows you to load or input data for a specific year's NCAA Tournament. Select the year and statistic you would
+				like to process, then press "RUMBLE" to complete the bracket.</br>
+				For example, if you want to see which team from 2018 would win based on their RPI (Rating Percentage Index), select 2018,
+				BPI, then press the "RUMBLE" button. </br>
 				You can override the "Rumble" results with the drop downs.</br>
-				If you would like to enter your own data to the bracket, first select a year to load team names, enter data for all 64 teams, then press "RUMBLE".  </br>
+				If you would like to enter your own data to the bracket, first select a year to load team names, enter data for all 64 teams,
+				then press "RUMBLE". </br>
 				The "Reset" button will clear all input fields.</p>
-	
-				<p><strong>Select Year: </strong>
-					<select>
-						<option value="2018">2018</option>
-					</select>
-				</p>
 
-				<p><strong>Select Stat: </strong>
-					<select id = "stat">
-						<option value="user">User Input</option>
-						<option value="bpi">BPI</option>
-						<option value="sos">SOS</option>
-						<option value="mmr">MMR</option>
-					</select>
-				</p>
+			<p>
+				<strong>Select Year: </strong>
+				<select>
+					<option value="2018">2018</option>
+				</select>
+			</p>
 
-				<p>
-					<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
-					<button type="button" class="btn btn-danger" id="resetButton">CLEAR</button>
-				</p>
-			</div>
+			<p>
+				<strong>Select Stat: </strong>
+				<select id="stat">
+					<option value="user">User Input</option>
+					<option value="bpi">BPI</option>
+					<option value="sos">SOS</option>
+					<option value="mmr">MMR</option>
+				</select>
+			</p>
+
+			<p>
+				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
+				<button type="button" class="btn btn-danger" id="resetButton">CLEAR</button>
+			</p>
 		</div>
+	</div>
 
-		<table style="width:100%">
+	<table style="width:100%">
+		<tr>
+			<th class="alignMe">Data</th>
+			<th class="alignMe">Round 1</th>
+			<th class="alignMe">Round 2</th>
+			<th class="alignMe">Sweet 16</th>
+			<th class="alignMe">Elite 8</th>
+			<th class="alignMe">Final 4</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th class="alignMe">Final 4</th>
+			<th class="alignMe">Elite 8</th>
+			<th class="alignMe">Sweet 16</th>
+			<th class="alignMe">Round 2</th>
+			<th class="alignMe">Round 1</th>
+			<th class="alignMe">Data</th>
+		</tr>
+		<tr>
+			<td class="alignMe">Load/Enter</td>
+			<td class="alignMe">March 15-16</td>
+			<td class="alignMe">March 17-28</td>
+			<td class="alignMe">March 22-23</td>
+			<td class="alignMe">March 24-25</td>
+			<td class="alignMe">March 31st</td>
+			<th></th>
+			<th></th>
+			<th></th>
+			<td class="alignMe">March 31st</td>
+			<td class="alignMe">March 24-25</td>
+			<td class="alignMe">March 22-23</td>
+			<td class="alignMe">March 17-28</td>
+			<td class="alignMe">March 15-16</td>
+			<td class="alignMe">Load/Enter</td>
+		</tr>
+		<tr>
+			<td class="inputCell">
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 1 r1"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NE 1 r1"></td>
+			<td class="inputCell">
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="seed1NW">1</option>
+						<option value="seed16NW">16</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="seed1NE">1</option>
+						<option value="seed16NE">16</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 16 r1"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="NE 16 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="1or16NW">1/16</option>
+						<option value="8or9NW">8/9</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="1or16NE">1/16</option>
+						<option value="8or9NE">8/9</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 8 r1"></td>
+			<td class="rightBorder"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="leftBorder"></td>
+			<td class="NE 8 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="seed8NW">8</option>
+						<option value="seed9NW">9</option>
+					</select>
+				</div>
+			</td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="seed8NE">8</option>
+						<option value="seed9NE">9</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 9 r1"></td>
+			<td></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td></td>
+			<td class="NE 9 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="1or16or8or9NW">1/16/8/9</option>
+						<option value="5or12or4or13NW">5/12/4/13</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="1or16or8or9NE">1/16/8/9</option>
+						<option value="5or12or4or13NE">5/12/4/13</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 5 r1"></td>
+			<td></td>
+			<td class="rightBorder"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="leftBorder"></td>
+			<td></td>
+			<td class="NE 5 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="seed5NW">5</option>
+						<option value="seed12NW">12</option>
+					</select>
+				</div>
+			</td>
+			<td class="rightBorder"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="leftBorder"></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="seed5NE">5</option>
+						<option value="seed12NE">12</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 12 r1"></td>
+			<td class="rightBorder"></td>
+			<td class="rightBorder"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="leftBorder"></td>
+			<td class="leftBorder"></td>
+			<td class="NE 12 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="5or12NW">5/12</option>
+						<option value="4or13NW">4/13</option>
+					</select>
+				</div>
+			</td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="5or12NE">5/12</option>
+						<option value="4or13NE">4/13</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 4 r1"></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td class="NE 4 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="NW">
+				<div>
+					<select class="dropdown">
+						<option value="seed4NW">4</option>
+						<option value="seed13NW">13</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td></td>
+			<td class="NE">
+				<div>
+					<select class="dropdown">
+						<option value="seed4NE">4</option>
+						<option value="seed13NE">13</option>
+					</select>
+				</div>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
+			<td class="NW 13 r1"></td>
+			<td></td>
+			<td></td>
+			<td class="rightBorder"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="leftBorder"></td>
+			<td></td>
+			<td></td>
+			<td class="NE 13 r1"></td>
+			<td>
+				<input class="inputField" type="text" value="">
+			</td>
 			<tr>
-				<th class="alignMe">Data</th> 
-				<th class="alignMe">Round 1</th> 
-				<th class="alignMe">Round 2</th>
-				<th class="alignMe">Sweet 16</th>
-				<th class="alignMe">Elite 8</th>
-				<th class="alignMe">Final 4</th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th class="alignMe">Final 4</th>
-				<th class="alignMe">Elite 8</th>
-				<th class="alignMe">Sweet 16</th>
-				<th class="alignMe">Round 2</th>
-				<th class="alignMe">Round 1</th> 
-				<th class="alignMe">Data</th> 
-			</tr>
-			<tr>
-				<td class="alignMe">Load/Enter</td>
-				<td class="alignMe">March 15-16</td>
-				<td class="alignMe">March 17-28</td>
-				<td class="alignMe">March 22-23</td>
-				<td class="alignMe">March 24-25</td>
-				<td class="alignMe">March 31st</td>
-				<th></th>
-				<th></th>
-				<th></th>
-				<td class="alignMe">March 31st</td>
-				<td class="alignMe">March 24-25</td>
-				<td class="alignMe">March 22-23</td>
-				<td class="alignMe">March 17-28</td>
-				<td class="alignMe">March 15-16</td>
-				<td class="alignMe">Load/Enter</td>
-			</tr>
-			<tr>
-				<td class = "inputCell"><input class = "inputField" type="text" value=""></td>
-				<td class = "NW 1 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "NE 1 r1"></td>
-				<td class = "inputCell"><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
+				<td class="alignMe">
+					<strong>SOUTH</strong>
+				</td>
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
-							<option value="seed1NW">1</option>
-							<option value="seed16NW">16</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed1NE">1</option>
-							<option value="seed16NE">16</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="NW 16 r1"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="NE 16 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16NW">1/16</option>
-							<option value="8or9NW">8/9</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NE">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16NE">1/16</option>
-							<option value="8or9NE">8/9</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="NW 8 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="NE 8 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed8NW">8</option>
-							<option value="seed9NW">9</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="NE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed8NE">8</option>
-							<option value="seed9NE">9</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input  class = "inputField" type="text" value=""></td>
-				<td class="NW 9 r1"></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="NE 9 r1"></td>
-				<td><input class = "inputField"  type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16or8or9NW">1/16/8/9</option>
-							<option value="5or12or4or13NW">5/12/4/13</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NE">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16or8or9NE">1/16/8/9</option>
-							<option value="5or12or4or13NE">5/12/4/13</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input  class = "inputField" type="text" value=""></td>
-				<td class="NW 5 r1"></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="NE 5 r1"></td>
-				<td><input class = "inputField"  type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed5NW">5</option>
-							<option value="seed12NW">12</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="NE">					
-					<div>
-						<select class = "dropdown">
-							<option value="seed5NE">5</option>
-							<option value="seed12NE">12</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField"  type="text" value=""></td>
-				<td class="NW 12 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="NE 12 r1"></td>
-				<td><input class = "inputField"  type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="5or12NW">5/12</option>
-							<option value="4or13NW">4/13</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="NE">
-					<div>
-						<select class = "dropdown">
-							<option value="5or12NE">5/12</option>
-							<option value="4or13NE">4/13</option>
-						</select>
-					</div>	
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input  class = "inputField" type="text" value=""></td>
-				<td class="NW 4 r1"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="NE 4 r1"></td>
-				<td><input  class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed4NW">4</option>
-							<option value="seed13NW">13</option>
-						</select>
-					</div>	
-				</td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="NE">				
-					<div>
-						<select class = "dropdown">
-							<option value="seed4NE">4</option>
-							<option value="seed13NE">13</option>
-						</select>
-					</div>	
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input  class = "inputField" type="text" value=""></td>
-				<td class="NW 13 r1"></td>
-				<td></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td></td>
-				<td class="NE 13 r1"></td>
-				<td><input  class = "inputField" type="text" value=""></td>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="alignMe"><strong>SOUTH</strong></td>
-				<td></td>
-				<td class="NW">
-					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16or8or9or5or12or4or13NW">topSouth</option>
 							<option value="6or11or3or14or7or10or2or15NW">botSouth</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16or8or9or5or12or4or13NE">topEast</option>
 							<option value="6or11or3or14or7or10or2or15NE">botEast</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
-				<td class="alignMe"><strong>EAST</strong></td>
+				<td class="alignMe">
+					<strong>EAST</strong>
+				</td>
 				<td></td>
 				<td></td>
 				<td></td>
-			</tr>    
+			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 6 r1"></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td class="NE 6 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed6NW">6</option>
 							<option value="seed11NW">11</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed6NE">6</option>
 							<option value="seed11NE">11</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 11 r1"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE 11 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -679,95 +716,103 @@
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="6or11NW">6/11</option>
 							<option value="3or14NW">3/14</option>
 						</select>
-					</div>	
+					</div>
 				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="6or11NE">6/11</option>
 							<option value="3or14NE">3/14</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 3 r1"></td>
-				<td class = "rightBorder" ></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE 3 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed3NW">3</option>
 							<option value="seed14NW">14</option>
 						</select>
-					</div>	
+					</div>
 				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed3NE">3</option>
 							<option value="seed14NE">14</option>
 						</select>
-					</div>	
+					</div>
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 14 r1"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="NE 14 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -776,22 +821,22 @@
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="6or11or3or14NW">6/11/3/14</option>
 							<option value="7or10or2or15NW">7/10/2/15</option>
 						</select>
-					</div>	
+					</div>
 				</td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
-							<option value="6or11or3or14NW">6/11/3/14</option>
-							<option value="7or10or2or15NW">7/10/2/15</option>
+						<select class="dropdown">
+							<option value="6or11or3or14NE">6/11/3/14</option>
+							<option value="7or10or2or15NE">7/10/2/15</option>
 						</select>
 					</div>
 				</td>
@@ -801,45 +846,49 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 7 r1"></td>
-				<td ></td>
-				<td class = "rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="NE 7 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed7NW">7</option>
 							<option value="seed10NW">10</option>
 						</select>
 					</div>
 				</td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed7NE">7</option>
 							<option value="seed10NE">10</option>
 						</select>
@@ -849,21 +898,25 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 10 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE 10 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -871,22 +924,22 @@
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="7or10NW">7/10</option>
 							<option value="2or15NW">2/15</option>
 						</select>
 					</div>
 				</td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="7or10NE">7/10</option>
 							<option value="2or15NE">2/15</option>
 						</select>
@@ -897,28 +950,32 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 2 r1"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="NE 2 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="NW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed2NW">2</option>
 							<option value="seed15NW">15</option>
 						</select>
@@ -926,16 +983,16 @@
 				</td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td class="NE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed2NE">2</option>
 							<option value="seed15NE">15</option>
 						</select>
@@ -945,21 +1002,25 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="NW 15 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td class="NE 15 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -967,11 +1028,13 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class ="alignMe"><strong>CHAMPION</strong></td>
+				<td class="alignMe">
+					<strong>CHAMPION</strong>
+				</td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -984,32 +1047,32 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "championship">
+				<td class="rightBorder"></td>
+				<td class="championship">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="winnderNW">NW</option>
 							<option value="winnerSW">SW</option>
 						</select>
 					</div>
 				</td>
-				<td class = "champion">
+				<td class="champion">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="NWorSW">NW/SW</option>
 							<option value="NEorSE">NE/SE</option>
 						</select>
 					</div>
 				</td>
-				<td class = "championship">
+				<td class="championship">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="winnerNE">NE</option>
 							<option value="winnerSE">SE</option>
 						</select>
 					</div>
 				</td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -1022,11 +1085,13 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "alignMe"> <br></td>
+				<td class="alignMe">
+					<br>
+				</td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -1034,28 +1099,32 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class = "SW 1 r1"></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
+				<td class="SW 1 r1"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "SE 1 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td class="SE 1 r1"></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed1SW">1</option>
 							<option value="seed16SW">16</option>
 						</select>
@@ -1063,16 +1132,16 @@
 				</td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed1SE">1</option>
 							<option value="seed16SE">16</option>
 						</select>
@@ -1082,21 +1151,25 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField"  type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 16 r1"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE 16 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1104,22 +1177,22 @@
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16SW">1/16</option>
 							<option value="8or9SW">8/9</option>
 						</select>
 					</div>
 				</td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16SE">1/16</option>
 							<option value="8or9SE">8/9</option>
 						</select>
@@ -1130,45 +1203,49 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 8 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE 8 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed8SW">8</option>
 							<option value="seed9SW">9</option>
 						</select>
 					</div>
 				</td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed8SE">8</option>
 							<option value="seed9SE">9</option>
 						</select>
@@ -1178,21 +1255,25 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 9 r1"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="SE 9 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1201,20 +1282,20 @@
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16or8or9SW">1/16/8/9</option>
 							<option value="5or12or4or13SW">5/12/4/13</option>
 						</select>
 					</div>
 				</td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="1or16or8or9SE">1/16/8/9</option>
 							<option value="5or12or4or13SE">5/12/4/13</option>
 						</select>
@@ -1226,45 +1307,49 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 5 r1"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="SE 5 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed5SW">5</option>
 							<option value="seed12SW">12</option>
 						</select>
 					</div>
 				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed5SE">5</option>
 							<option value="seed12SE">12</option>
 						</select>
@@ -1274,21 +1359,25 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField"  type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 12 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE 12 r1"></td>
-				<td><input class = "inputField"  type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -1296,22 +1385,22 @@
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="5or12SW">5/12</option>
 							<option value="4or13SW">4/13</option>
 						</select>
 					</div>
 				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="5or12SE">5/12</option>
 							<option value="4or13SE">4/13</option>
 						</select>
@@ -1322,45 +1411,49 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 4 r1"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td class="SE 4 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td class="SW">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed4SW">4</option>
 							<option value="seed13SW">13</option>
 						</select>
 					</div>
 				</td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td class="SE">
 					<div>
-						<select class = "dropdown">
+						<select class="dropdown">
 							<option value="seed4SE">4</option>
 							<option value="seed13SE">13</option>
 						</select>
@@ -1370,463 +1463,506 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
+				<td>
+					<input class="inputField" type="text" value="">
+				</td>
 				<td class="SW 13 r1"></td>
 				<td></td>
 				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
+				<td class="rightBorder"></td>
+				<td class="rightBorder"></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
+				<td class="leftBorder"></td>
+				<td class="leftBorder"></td>
 				<td></td>
 				<td></td>
 				<td class="SE 13 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="alignMe"><strong>WEST</strong></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16or8or9or5or12or4or13SW">topWest</option>
-							<option value="6or11or3or14or7or10or2or15SW">botWest</option>
-						</select>
-					</div>
+				<td>
+					<input class="inputField" type="text" value="">
 				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="1or16or8or9or5or12or4or13SE">topMidwest</option>
-							<option value="6or11or3or14or7or10or2or15SE">botMidwest</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td class="alignMe"><strong>MIDWEST</strong></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>    
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 6 r1"></td>
-				<td></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td></td>
-				<td class="SE 6 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed6SW">6</option>
-							<option value="seed11SW">11</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed6SE">6</option>
-							<option value="seed11SE">11</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 11 r1"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="SE 11 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="6or11SW">6/11</option>
-							<option value="3or14SW">3/14</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="6or11SE">6/11</option>
-							<option value="3or14SE">3/14</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 3 r1"></td>
-				<td class = "rightBorder" ></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="SE 3 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed3SW">3</option>
-							<option value="seed14SW">14</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed3SE">3</option>
-							<option value="seed14SE">14</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 14 r1"></td>
-				<td></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="SE 14 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
 				<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="6or11or3or14SW">6/11/3/14</option>
-							<option value="7or10or2or15SW">7/10/2/15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="6or11or3or14SE">6/11/3/14</option>
-							<option value="7or10or2or15SE">7/10/2/15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 7 r1"></td>
-				<td ></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td></td>
-				<td class="SE 7 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed7SW">7</option>
-							<option value="seed10SW">10</option>
-						</select>
-					</div>
-				</td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed7SE">7</option>
-							<option value="seed10SE">10</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 10 r1"></td>
-				<td class = "rightBorder"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class = "leftBorder"></td>
-				<td class="SE 10 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="7or10SW">7/10</option>
-							<option value="2or15SW">2/15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="7or10SE">7/10</option>
-							<option value="2or15SE">2/15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 2 r1"></td>
-				<td class = "rightBorder"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class = "leftBorder"></td>
-				<td class="SE 2 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="SW">
-					<div>
-						<select class = "dropdown">
-							<option value="seed2SW">2</option>
-							<option value="seed15SW">15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SE">
-					<div>
-						<select class = "dropdown">
-							<option value="seed2SE">2</option>
-							<option value="seed15SE">15</option>
-						</select>
-					</div>
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input class = "inputField" type="text" value=""></td>
-				<td class="SW 15 r1"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="SE 15 r1"></td>
-				<td><input class = "inputField" type="text" value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="alignMe">
+						<strong>WEST</strong>
+					</td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="1or16or8or9or5or12or4or13SW">topWest</option>
+								<option value="6or11or3or14or7or10or2or15SW">botWest</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="1or16or8or9or5or12or4or13SE">topMidwest</option>
+								<option value="6or11or3or14or7or10or2or15SE">botMidwest</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td class="alignMe">
+						<strong>MIDWEST</strong>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 6 r1"></td>
+					<td></td>
+					<td></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td></td>
+					<td></td>
+					<td class="SE 6 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="seed6SW">6</option>
+								<option value="seed11SW">11</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="seed6SE">6</option>
+								<option value="seed11SE">11</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 11 r1"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="SE 11 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="6or11SW">6/11</option>
+								<option value="3or14SW">3/14</option>
+							</select>
+						</div>
+					</td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="6or11SE">6/11</option>
+								<option value="3or14SE">3/14</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 3 r1"></td>
+					<td class="rightBorder"></td>
+					<td class="rightBorder"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="leftBorder"></td>
+					<td class="leftBorder"></td>
+					<td class="SE 3 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="seed3SW">3</option>
+								<option value="seed14SW">14</option>
+							</select>
+						</div>
+					</td>
+					<td class="rightBorder"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="leftBorder"></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="seed3SE">3</option>
+								<option value="seed14SE">14</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 14 r1"></td>
+					<td></td>
+					<td class="rightBorder"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="leftBorder"></td>
+					<td></td>
+					<td class="SE 14 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="6or11or3or14SW">6/11/3/14</option>
+								<option value="7or10or2or15SW">7/10/2/15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="6or11or3or14SE">6/11/3/14</option>
+								<option value="7or10or2or15SE">7/10/2/15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 7 r1"></td>
+					<td></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td></td>
+					<td class="SE 7 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="seed7SW">7</option>
+								<option value="seed10SW">10</option>
+							</select>
+						</div>
+					</td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="seed7SE">7</option>
+								<option value="seed10SE">10</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 10 r1"></td>
+					<td class="rightBorder"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="leftBorder"></td>
+					<td class="SE 10 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="7or10SW">7/10</option>
+								<option value="2or15SW">2/15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="7or10SE">7/10</option>
+								<option value="2or15SE">2/15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 2 r1"></td>
+					<td class="rightBorder"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="leftBorder"></td>
+					<td class="SE 2 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="SW">
+						<div>
+							<select class="dropdown">
+								<option value="seed2SW">2</option>
+								<option value="seed15SW">15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SE">
+						<div>
+							<select class="dropdown">
+								<option value="seed2SE">2</option>
+								<option value="seed15SE">15</option>
+							</select>
+						</div>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+					<td class="SW 15 r1"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="SE 15 r1"></td>
+					<td>
+						<input class="inputField" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+	</table>
 
-		<h2 class = "alignMe"> JPMillerEngineering.com</h2>
-		<br>
+	<h2 class="alignMe"> JPMillerEngineering.com</h2>
+	<br>
 
-		<!-- Bootstrap stuff -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  	</body>
+	<!-- Bootstrap stuff -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	 crossorigin="anonymous"></script>
+</body>
+
 </html>
