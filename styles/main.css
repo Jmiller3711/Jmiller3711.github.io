@@ -269,3 +269,8 @@
 	background-color:  rgb(251, 255, 0);
 	border: none;
 }
+
+#marchMadness.home .tieLabel
+{
+	display: none;
+}

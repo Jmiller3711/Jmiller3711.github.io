@@ -71,6 +71,7 @@
 			thisGuy.data("team", teamData);
 			allFirstRounds.push(thisGuy);
 		})
+		$(".TIE").removeClass("TIE");
 		computeRound(allFirstRounds, false);
 	}
 
@@ -80,8 +81,6 @@
 		if (TeamsToBattle.length == 0)  //if we run out of teams we're done and can leave //can delete this or something is seriously wrong
 		return computeEnded(TieDetected);
 		if (TeamsToBattle.length == 1)  //I think that means we're at the championship and we're done.. need to test this
-		return computeEnded(TieDetected);
-		if (TeamsToBattle.length == 2) { console.log(1234); } //can delete this
 		return computeEnded(TieDetected);
 		
 		var firstGuy = TeamsToBattle[0];
@@ -159,7 +158,7 @@
 			winnerGoesHere = $(".dropdown option[value='" + possibleRegion1 + "'],option[value='"+possibleRegion2+"']");
 		}
 
-		if(thereWasATieThisRound) winnerGoesHere.addClass("Tie");
+		if(thereWasATieThisRound) winnerGoesHere.addClass("TIE");
 		winnerGoesHere.data("team", winner);
 
 		if(thereWasATieThisRound) 
@@ -182,6 +181,9 @@
 		if(thereWasATie) 
 		{
 			console.log("I am done and found at least one tie");
+			alert("Tie Detected");
+			//$("#tieLabel").fadeIn();
+			$("#tieLabel").hide();
 		}
 	}
 
@@ -226,7 +228,7 @@
 			</p>
 
 			<p>
-				<label id='ties'>Fix your ties</label>
+				<label id="tieLabel"></label>
 			</p>
 			<p>
 				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
