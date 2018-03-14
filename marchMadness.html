@@ -79,7 +79,8 @@
 		
 		if (TeamsToBattle.length == 0) return; //if we run out of teams we're done and can leave
 		if (TeamsToBattle.length == 1) return; //I think that means we're at the championship and we're done.. need to test this
-
+		if (TeamsToBattle.length == 2) { console.log(1234); }
+		
 		var firstGuy = TeamsToBattle[0];
 		//we grab the first thing in the array, which should be an option tag which should have a data-team attribute on it
 
