@@ -70,15 +70,12 @@
 
 	function computeRound(TeamsToBattle) {
 		var oldTeamsLength = TeamsToBattle.length;
-		//if we run out of teams we're done and can leave
-		if (TeamsToBattle.length == 0) return;
-
+		
+		if (TeamsToBattle.length == 0) return; //if we run out of teams we're done and can leave
 		if (TeamsToBattle.length == 1) return; //I think that means we're at the championship and we're done.. need to test this
-
 
 		var firstGuy = TeamsToBattle[0];
 		//we grab the first thing in the array, which should be an option tag which should have a data-team attribute on it
-
 
 		var mySeed = firstGuy.data("team").seed;
 		var myRegion = firstGuy.data("team").regionABVR;
