@@ -17,6 +17,8 @@
 	function loadData(year) 
 	{
 		$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year=' + year);
+				   //https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec
+				   //https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec
 	}
 	function gotData(d) 
 	{
@@ -32,9 +34,12 @@
 	}
 	$(function () 
 	{
-		$("#resetButton").click(function () 
+		$("#resetInputButton").click(function () 
 		{
-			$(".inputField").val(""); //sets value
+			$(".inputField").val(""); 
+		});
+		$("#resetTeamsButton").click(function () 
+		{
 			$(".dropdown > option").text("");
 		});
 
@@ -167,15 +172,20 @@
 				<strong>Select Stat: </strong>
 				<select id="stat">
 					<option value="user">User Input</option>
-					<option value="bpi">BPI</option>
+					<option value="rpi">RPI</option>
 					<option value="sos">SOS</option>
 					<option value="mmr">MMR</option>
+					<option value="mmrrpi">MMR*RPI</option>
+					<option value="mmrsos">MMR*SOS</option>
 				</select>
 			</p>
 
 			<p>
 				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
-				<button type="button" class="btn btn-danger" id="resetButton">CLEAR</button>
+			</p>
+			<p>
+				<button type="button" class="btn btn-danger" id="resetInputButton">CLEAR INPUT</button>
+				<button type="button" class="btn btn-danger" id="resetTeamsButton">CLEAR TEAMS</button>
 			</p>
 		</div>
 	</div>
