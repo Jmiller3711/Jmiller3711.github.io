@@ -14,59 +14,58 @@
  crossorigin="anonymous"></script>
 <!-- <script src="./marchMadness.js"></script> -->
 <script>
-	function loadData(year) {
+	function loadData(year) 
+	{
 		$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year=' + year);
 	}
-	function gotData(d) {
+	function gotData(d) 
+	{
 		console.log(d);
-		if (d.success) {
+		if (d.success) 
+		{
 			console.log(d.data);
-
-			for (var seed = 0; seed < d.data.length; seed++) {
-				$("." + d.data[seed].regionABVR + "." + d.data[seed].seed)
-					.html(d.data[seed].name + " (" + d.data[seed].seed + ")")
-					.data("team", d.data[seed]); //puts team on html data
+			for (var seed = 0; seed < d.data.length; seed++) 
+			{
+				$("." + d.data[seed].regionABVR + "." + d.data[seed].seed).html(d.data[seed].name + " (" + d.data[seed].seed + ")").data("team", d.data[seed]); //puts team on html data
 			}
 		}
 	}
-	$(function () {
-		$("#resetButton").click(function () {
+	$(function () 
+	{
+		$("#resetButton").click(function () 
+		{
 			$(".inputField").val(""); //sets value
 			$(".dropdown > option").text("");
 		});
-		$("select#stat").change(function () {
+
+		$("select#stat").change(function () 
+		{
 			console.log($(this).val()); //returns value
 			var stat = $(this).val();
-			$(".r1").each(function () {
+			$(".r1").each(function () 
+			{
 				var teamInput = $(this).prev().find("input");
 				if (!teamInput.length) teamInput = $(this).next().find("input");
 				teamInput.val($(this).data("team")[stat]);
 			});
-		})
+		});
 		loadData();
 	});
 
-	function getStatFromInputField() {
-		return 37;
-	}
-
 	function onRumbleClick() {
 		var allFirstRounds = []
-
-		//set the team's stat for each round one element based on what's in the input box which was loaded by switching the stat type dropdown or changed by the user
-		$(".r1").each(function (element) {
+		$(".r1").each(function (element) 
+		{
 			var teamData = $(this).data("team");
-			var stat = 37; //use the function where we set the input of each round one team, but instead of setting the value, GET the value
-			//should be very similar
-			teamData.stat = stat;
+			var teamInput = $(this).prev().find("input");
+			if (!teamInput.length) teamInput = $(this).next().find("input");
+			teamData.stat = teamInput.val();
 
 			var thisGuy = $(".dropdown option[value='seed" + teamData.seed + teamData.regionABVR + "']");
 			thisGuy.data("team", teamData);
 			allFirstRounds.push(thisGuy);
 		})
-
 		computeRound(allFirstRounds);
-
 	}
 
 	function computeRound(TeamsToBattle) {
