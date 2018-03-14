@@ -134,7 +134,13 @@
 
 		if(winnerGoesHere.length === 0 && firstGuy.data("team").region == MyOpponent.data("team").region) 
 		{
-  			winnerGoesHere = $(".dropdown option[value='winner"+firstGuy.data("team").regionABVR+"']")
+  			winnerGoesHere = $(".dropdown option[value='winner"+firstGuy.data("team").regionABVR+"']");
+		}
+		if(winnerGoesHere.length === 0)
+		{
+			var possibleRegion1 = myRegion + 'or' + MyOpponent.data("team").regionABVR;
+			var possibleRegion2 = MyOpponent.data("team").regionABVR + 'or' + myRegion;
+			winnerGoesHere = $(possibleRegion1 +","+possibleRegion2);
 		}
 		winnerGoesHere.data("team", winner);
 
