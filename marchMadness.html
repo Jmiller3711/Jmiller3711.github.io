@@ -65,7 +65,7 @@
 			var teamData = $(this).data("team");
 			var teamInput = $(this).prev().find("input");
 			if (!teamInput.length) teamInput = $(this).next().find("input");
-			teamData.stat = teamInput.val();
+			teamData.stat = (+teamInput.val());
 
 			var thisGuy = $(".dropdown option[value='seed" + teamData.seed + teamData.regionABVR + "']");
 			thisGuy.data("team", teamData);
@@ -111,7 +111,8 @@
 			var teamSeed = TeamsToBattle[i].data("team").seed;
 			var teamRegion = TeamsToBattle[i].data("team").regionABVR;
 
-			if (teamRegion == myRegion && (teamSeed == mySeed || teamSeed == MyOpponent.data("team").seed)) { }
+			//if (teamRegion == myRegion && (teamSeed == mySeed || teamSeed == MyOpponent.data("team").seed)) { }
+			if ((teamRegion == myRegion && teamSeed == mySeed) || (teamRegion == MyOpponent.data("team").regionABVR && teamSeed == MyOpponent.data("team").seed)) {}
 			//don't add the team
 			else
 				newTeamsToBattle.push(TeamsToBattle[i]);
