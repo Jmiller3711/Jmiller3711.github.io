@@ -71,14 +71,16 @@
 			thisGuy.data("team", teamData);
 			allFirstRounds.push(thisGuy);
 		})
-		computeRound(allFirstRounds);
+		computeRound(allFirstRounds, false);
 	}
 
-	function computeRound(TeamsToBattle) {
+	function computeRound(TeamsToBattle, TieDetected) {
 		var oldTeamsLength = TeamsToBattle.length;
 		
-		if (TeamsToBattle.length == 0) return; //if we run out of teams we're done and can leave
-		if (TeamsToBattle.length == 1) return; //I think that means we're at the championship and we're done.. need to test this
+		if (TeamsToBattle.length == 0)  //if we run out of teams we're done and can leave
+		return computeEnded(TieDetected);
+		if (TeamsToBattle.length == 1)  //I think that means we're at the championship and we're done.. need to test this
+		return computeEnded(TieDetected);
 		if (TeamsToBattle.length == 2) { console.log(1234); }
 		
 		var firstGuy = TeamsToBattle[0];
@@ -119,14 +121,27 @@
 		}
 
 		var winner;
-		if (myStat > hisStat) {
+		
+		var thereWasATieThisRound = false;
+		if (myStat == hisStat)
+		{
+			myStat += .5 - Math.Random();
+			TieDetected = true;
+			thereWasATieThisRound = true;
+		}
+
+		if (myStat > hisStat) 
+		{
 			//I win
 			firstGuy.parent()[0].selectedIndex = mySlotIfIWin;
 			winner = firstGuy.data("team");
-		} else {
+		} 
+		else 
+		{
 			//he wins
 			firstGuy.parent()[0].selectedIndex = hisSlotIfHeWins;
 			winner = MyOpponent.data("team");
+			thereWasATie = true;
 		}
 
 		//problem here, we need to figure out where the winner might get placed into the next bracket.. if you were very careful with your naming we'll be okay, but if you messed up at all it won't work at all
@@ -142,20 +157,33 @@
 			var possibleRegion2 = MyOpponent.data("team").regionABVR + 'or' + myRegion;
 			winnerGoesHere = $(".dropdown option[value='" + possibleRegion1 + "'],option[value='"+possibleRegion2+"']");
 		}
+
+		if(thereWasATie) winnerGoesHere.addClass("Tie");
 		winnerGoesHere.data("team", winner);
 
-		if (!winnerGoesHere.length) {
-			console.log("Tried to put null winner");
+		if(thereWasATieThisRound) 
+		{
+  			winnerGoesHere.addClass("TIE");
 		}
+
+
 		newTeamsToBattle.push(winnerGoesHere);
 		console.log("Old " + oldTeamsLength + " New " + newTeamsToBattle.length);
-
 
 		//we removed two peolp from the array, and added one back.
 		//so if we re-call the function we expect there to be one less team to battle
 		//so eventually this 'loop' will end when we hit 0 (or 1) teams left
-		computeRound(newTeamsToBattle);
+		computeRound(newTeamsToBattle, TieDetected);
 	}
+
+	function computeEnded(thereWasATie)
+	{
+		if(thereWasATie) 
+		{
+			console.log("I am done and found at least one tie");
+		}
+	}
+
 </script>
 
 <body id="marchMadness" class="home">
@@ -196,6 +224,9 @@
 				</select>
 			</p>
 
+			<p>
+				<label id='ties'>Fix your ties</label>
+			</p>
 			<p>
 				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
 			</p>
