@@ -77,11 +77,12 @@
 	function computeRound(TeamsToBattle, TieDetected) {
 		var oldTeamsLength = TeamsToBattle.length;
 		
-		if (TeamsToBattle.length == 0)  //if we run out of teams we're done and can leave
+		if (TeamsToBattle.length == 0)  //if we run out of teams we're done and can leave //can delete this or something is seriously wrong
 		return computeEnded(TieDetected);
 		if (TeamsToBattle.length == 1)  //I think that means we're at the championship and we're done.. need to test this
 		return computeEnded(TieDetected);
-		if (TeamsToBattle.length == 2) { console.log(1234); }
+		if (TeamsToBattle.length == 2) { console.log(1234); } //can delete this
+		return computeEnded(TieDetected);
 		
 		var firstGuy = TeamsToBattle[0];
 		//we grab the first thing in the array, which should be an option tag which should have a data-team attribute on it
@@ -125,7 +126,7 @@
 		var thereWasATieThisRound = false;
 		if (myStat == hisStat)
 		{
-			myStat += .5 - Math.Random();
+			myStat += .5 - Math.random();
 			TieDetected = true;
 			thereWasATieThisRound = true;
 		}
@@ -141,7 +142,7 @@
 			//he wins
 			firstGuy.parent()[0].selectedIndex = hisSlotIfHeWins;
 			winner = MyOpponent.data("team");
-			thereWasATie = true;
+			thereWasATieThisRound = true;
 		}
 
 		//problem here, we need to figure out where the winner might get placed into the next bracket.. if you were very careful with your naming we'll be okay, but if you messed up at all it won't work at all
@@ -158,7 +159,7 @@
 			winnerGoesHere = $(".dropdown option[value='" + possibleRegion1 + "'],option[value='"+possibleRegion2+"']");
 		}
 
-		if(thereWasATie) winnerGoesHere.addClass("Tie");
+		if(thereWasATieThisRound) winnerGoesHere.addClass("Tie");
 		winnerGoesHere.data("team", winner);
 
 		if(thereWasATieThisRound) 
