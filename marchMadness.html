@@ -14,12 +14,12 @@
  crossorigin="anonymous"></script>
 <!-- <script src="./marchMadness.js"></script> -->
 <script>
+
 	function loadData(year) 
 	{
 		$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year=' + year);
-				   //https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec
-				   //https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec
 	}
+
 	function gotData(d) 
 	{
 		console.log(d);
@@ -32,6 +32,7 @@
 			}
 		}
 	}
+
 	$(function () 
 	{
 		$("#resetInputButton").click(function () 
@@ -115,7 +116,6 @@
 				newTeamsToBattle.push(TeamsToBattle[i]);
 		}
 
-
 		var winner;
 		if (myStat > hisStat) {
 			//I win
@@ -129,6 +129,11 @@
 
 		//problem here, we need to figure out where the winner might get placed into the next bracket.. if you were very careful with your naming we'll be okay, but if you messed up at all it won't work at all
 		var winnerGoesHere = $(".dropdown option[value='" + firstGuy.val().slice(0, -2).replace('seed', '') + 'or' + MyOpponent.val().replace('seed', '') + "']"); // we concatted 1or16or8or9SW with 5or12or4or13SW  (but we removed the SW from teh first one)
+
+		if(winnerGoesHere.length === 0 && firstGuy.data("team").region == MyOpponent.data("team").region) 
+		{
+  			winnerGoesHere = $(".dropdown option[value='winner"+firstGuy.data("team").regionABVR+"']")
+		}
 		winnerGoesHere.data("team", winner);
 
 		if (!winnerGoesHere.length) {
