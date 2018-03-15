@@ -181,8 +181,7 @@
 		if(thereWasATie) 
 		{
 			console.log("I am done and found at least one tie");
-			alert("Tie Detected");
-			//$("#tieLabel").fadeIn();
+			alert("Tie Detected! Coinflip was used to determine a winner.");
 			$("#tieLabel").hide();
 		}
 	}
@@ -202,6 +201,7 @@
 				RPI, then press the "RUMBLE" button. <br>
 				If you would like to enter your own data to the bracket, first select a year to load team names, enter data for all 64 teams,
 				then press "RUMBLE". <br>
+				If a tie is detected, an alert popup will notify the user. 
 				You can override the "RUMBLE" results with the drop downs (functionality coming soon).<br>
 				The "CLEAR TEAMS" button will clear all the teams currently in the bracket.<br>
 				The "CLEAR INPUT" button will clear all input fields.<br>
@@ -227,11 +227,9 @@
 				</select>
 			</p>
 
+				
 			<p>
-				<label id="tieLabel"></label>
-			</p>
-			<p>
-				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button>
+				<button type="button" class="btn btn-info" onClick="onRumbleClick()">RUMBLE</button><label id="tieLabel"></label>
 			</p>
 			<p>
 				<button type="button" class="btn btn-danger" id="resetInputButton">CLEAR INPUT</button>
