@@ -1,7 +1,8 @@
 (function(){
 	var navHandler = {
-		el : document.querySelectorAll('[src="/navbar.js"]')
+		el : document.querySelectorAll('[src="./javascript/navbar.js"]')
 	}
+	console.log("navHandler.el = " + navHandler.el );
 	if(!navHandler.el.length) {
 		alert("something ran navbar.js, but navbar.js was unable to figure out who called it.  It should be called with <script src='/navbar.js'></script>");
 	}
