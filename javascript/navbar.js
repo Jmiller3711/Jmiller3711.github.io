@@ -22,6 +22,6 @@
 	}
 	var oReq = new XMLHttpRequest();
 	oReq.addEventListener("load", navHandler.gotNav.bind(navHandler));
-	oReq.open("GET", "/navbar.html");
+	oReq.open("GET", "./navbar.html");
 	oReq.send();
 })();
