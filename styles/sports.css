@@ -1,0 +1,133 @@
+#marchMadness.home .NW
+{
+	background-color: #4d94ff;
+	border: 1px solid;
+}
+
+#marchMadness.home .NE
+{
+	background-color: #ff8c1a;
+	border: 1px solid;
+}
+
+#marchMadness.home .SW
+{
+	background-color: #ff3300;
+	border: 1px solid;
+}
+
+#marchMadness.home .SE
+{
+	background-color: #80ffff;
+	border: 1px solid;
+}
+
+#marchMadness.home .rightBorder
+{
+	border-right: 1px solid;
+}
+
+#marchMadness.home .leftBorder
+{
+	border-left: 1px solid;
+}
+
+#marchMadness.home .bottomBorder
+{
+	border-bottom: 1px solid;
+}
+
+#marchMadness.home .topBorder
+{
+	border-top: 1px solid;
+}
+
+#marchMadness.home .alignMe
+{
+	text-align: center;
+}
+
+#marchMadness.home .championship
+{
+	text-align: center;
+	background-color: rgb(41, 224, 41);
+	border: 1px solid;
+}
+
+#marchMadness.home .champion
+{
+	text-align: center;
+	background-color: rgb(251, 255, 0);
+	border: 1px solid;
+}
+
+#marchMadness.home .inputField
+{
+	background-color: rgb(251, 255, 0);
+	text-align: center;
+	width: 100%;
+}
+
+#marchMadness.home .inputCell
+{
+	width: 50px;
+}
+
+#marchMadness.home .dropDown
+{
+	margin: 1%;
+}
+
+#marchMadness.home .card
+{
+	text-align: center;
+	margin: 1%;
+	padding: 1;
+}
+
+#marchMadness.home .NW .dropdown
+{
+	width: 100%;
+	background-color:  #4d94ff;
+	border: none;
+}
+
+#marchMadness.home .NE .dropdown
+{
+	width: 100%;
+	background-color:  #ff8c1a;;
+	border: none;
+}
+
+#marchMadness.home .SW .dropdown
+{
+	width: 100%;
+	background-color:  #ff3300;
+	border: none;
+}
+
+#marchMadness.home .SE .dropdown
+{
+	width: 100%;
+	background-color:  #80ffff;
+	border: none;
+}
+
+#marchMadness.home .championship .dropdown
+{
+	width: 100%;
+	background-color:  rgb(41, 224, 41);;
+	border: none;
+}
+
+#marchMadness.home .champion .dropdown
+{
+	width: 100%;
+	background-color:  rgb(251, 255, 0);
+	border: none;
+}
+
+#marchMadness.home .tieLabel
+{
+	display: none;
+}

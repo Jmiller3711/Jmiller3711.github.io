@@ -32,7 +32,7 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle brewActive" href="contact.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brewing</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item brewHomeActive" href="brewingHome.html">Brewing Home</a>
+				<a class="dropdown-item brewHomeActive" href="./brewing/brewingHome.html">Brewing Home</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item brewSheetActive" href="brewSheet.html">Brew Sheet</a>
 				<a class="dropdown-item brewChoresActive" href="beerChores.html">Chores</a>
