@@ -2,19 +2,24 @@
 #homepage.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/channelart.jpg");
+	background-image: url("../pics/engineering.jpg");
 	background-position: center;
 	background-size: cover;
 }
 
 #homepage.home .jumbotron p
 {
-	color: white
+	color: white;
+	text-align: center;
+	font-weight: 5; 
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #homepage.home .jumbotron h1
 {
 	color:white;
+	text-align: center;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #homepage.home .card-img-top
@@ -29,7 +34,7 @@
 
 #homepage
 {
-	background-color: black;
+	background-color: navy;
 }
 
 #contact .card
@@ -41,9 +46,6 @@
 {
 	max-height: 250px;
 }
-
-
-/*====================projects====================*/
 
 
 
