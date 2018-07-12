@@ -32,101 +32,6 @@
 	background-color: black;
 }
 
-/*====================brewing====================*/
-/* #brewing.home .jumbotron
-{
-	margin: 3%;
-	background-image: url("../pics/craft-beer.jpg");
-	background-position: center;
-	background-size: cover;
-}
-
-#brewing.home .jumbotron p
-{
-	color: white
-}
-
-#brewing.home .jumbotron h1
-{
-	color:white;
-	text-align: center;
-} */
-
-/* #brewing.tools .card
-{
-	margin: 3%;
-}
-
-#brewing.tools .container
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 300px;
-	width: 100%;
-}
-
-#brewingHistory.home .jumbotron
-{
-	margin: 3%;
-	background-image: url("../pics/beerKegs.jpg");
-	background-position: center;
-	background-size: cover;
-	color: white
-}
-
-.brewingSchedule
-{
-	position: absolute;
-} */
-
-/*====================calculus====================*/
-#calculus.home .container .card
-{
-	margin: 1%;
-}
-
-#calculus.home .card-body ul 
-{
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
-#calculus.home .card-title 
-{
-	text-align: center;
-}
-
-#calculus.home .card-body .btn
-{
-	margin: 1%;
-	text-align: left;
-}
-
-/*====================tutoring====================*/
-#tutoring.home .jumbotron
-{
-	margin: 3%;
-	background-image: url("../pics/chalkboard.jpg");
-	background-position: bottom;
-	background-size: cover;
-}
-
-
-#tutoring.home p
-{
-	color: white
-}
-
-#tutoring.home h1
-{
-	color:white
-}
-
-
-/*====================contact====================*/
-
 #contact .card
 {
 	margin: 3%;
@@ -140,10 +45,5 @@
 
 /*====================projects====================*/
 
-#beerCaddy.home .container-fluid
-{
-	width: 85%;
-}
 
-/*====================projects====================*/
 
