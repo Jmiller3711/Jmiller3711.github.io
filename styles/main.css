@@ -2,7 +2,7 @@
 #homepage.home .jumbotron
 {
 	margin: 3%;
-	background-image: url("../pics/polygonArt2.jpg");
+	background-image: url("../pics/helloWorld.png");
 	background-position: center;
 	background-size: auto 100%;
 }
@@ -28,7 +28,7 @@
 }
 
 /*====================brewing====================*/
-#brewing.home .jumbotron
+/* #brewing.home .jumbotron
 {
 	margin: 3%;
 	background-image: url("../pics/craft-beer.jpg");
@@ -45,9 +45,9 @@
 {
 	color:white;
 	text-align: center;
-}
+} */
 
-#brewing.tools .card
+/* #brewing.tools .card
 {
 	margin: 3%;
 }
@@ -73,7 +73,7 @@
 .brewingSchedule
 {
 	position: absolute;
-}
+} */
 
 /*====================calculus====================*/
 #calculus.home .container .card

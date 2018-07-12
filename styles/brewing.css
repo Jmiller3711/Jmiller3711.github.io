@@ -1,0 +1,46 @@
+#brewing.home .jumbotron
+{
+	margin: 3%;
+	background-image: url("../pics/craft-beer.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+#brewing.home .jumbotron p
+{
+	color: white
+}
+
+#brewing.home .jumbotron h1
+{
+	color:white;
+    text-align: center;
+}
+
+#brewing.tools .card
+{
+	margin: 3%;
+}
+
+#brewing.tools .container
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
+	width: 100%;
+}
+
+#brewingHistory.home .jumbotron
+{
+	margin: 3%;
+	background-image: url("../pics/beerKegs.jpg");
+	background-position: center;
+	background-size: cover;
+	color: white
+}
+
+.brewingSchedule
+{
+	position: absolute;
+}
