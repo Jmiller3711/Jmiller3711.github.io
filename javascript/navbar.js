@@ -1,7 +1,7 @@
 (function(){
 	var navHandler = 
 	{
-		el : document.querySelectorAll('[src="./javascript/navbar.js"]')
+		el : document.querySelectorAll('[src$="/navbar.js"]')
 	}
 	console.log("navHandler.el = " + navHandler.el );
 	if(!navHandler.el.length) 
