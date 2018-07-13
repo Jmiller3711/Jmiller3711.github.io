@@ -42,6 +42,11 @@
 	background-color: navy;
 }
 
+#homepage .backToTopButton
+{
+	text-align: center;
+}
+
 #contact .card
 {
 	margin: 3%;
