@@ -1,70 +1,77 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Jordan's Website</title>
-		<!-- Bootstrap stuff -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-		<link href="styles/main.css" rel="stylesheet" type="text/css"/>
-	</head>
-	<body id="homepage" class="home">
-		<!-- Navigation bar -->
-		<script src="./javascript/navbar.js" navbar-active=".indexActive"></script>
-		
-		<div class="jumbotron">
-			<h1 class="display-3">JPMillerEngineering.com</h1>
-			<p class="lead">Showcasing my hobbies, projects, and tutoring services.</p>
-		</div>
-		
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm">
-					<div class="card">
-						<img class="card-img-top" src="pics/garageBrewery2.png" alt="Card image cap">
-						<div class="card-body">
-							<h4 class="card-title">Brewing</h4>
-							<p class="card-text">Recipies, Tools, and History</p>
-							<a href="./brewing/brewingHome.html" class="btn btn-primary">Brewing</a>
-						</div>
-					</div>
+<head>
+	<title>JPMillerEngineering</title>
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	    crossorigin="anonymous">
+
+	<link rel="shortcut icon" href="pics/if_key_j_64387.ico">
+	<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="homepage" class="home">
+	<!-- Navigation bar -->
+	<script src="./javascript/navbar.js" navbar-active=".indexActive"></script>
+
+	<div class="jumbotron">
+		<h1 class="display-3">JPMillerEngineering.com</h1>
+		<p class="lead">Showcasing my hobbies, projects, and tutoring services.</p>
+	</div>
+
+	<div class="container">
+		<div class="card-deck">
+			<div class="card">
+				<img class="card-img-top" src="pics/garageBrewery2.png" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Brewing</h5>
+					<p class="card-text">Handy tools, schedule, history and more!</p>
 				</div>
-				<div class="col-sm">
-					<div class="card">
-						<img class="card-img-top" src="pics/BeerCaddySketch2.png" alt="Card image cap">
-						<div class="card-body">
-							<h4 class="card-title">Projects</h4>
-							<p class="card-text">Check out some of my past projects </p>
-							<a href="./personalProjects/beerCaddy.html" class="btn btn-primary">Projects</a>
-						</div>
-					</div>
+				<div class="card-footer text-center">
+					<a href="./brewing/brewingHome.html" class="btn btn-primary">Brewing</a>
 				</div>
-				<div class="col-sm">
-					<div class="card">
-						<img class="card-img-top" src="pics/sports.jpeg" alt="Card image cap">
-						<div class="card-body">
-							<h4 class="card-title">Sports</h4>
-							<p class="card-text">March madness and Family Football</p>
-							<a href="./sports/marchMadness.html" class="btn btn-primary">Sports</a>
-						</div>
-					</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="pics/BeerCaddySketch2.png" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Personal Projects</h5>
+					<p class="card-text">Explore some of my personal projects and hobbies</p>
 				</div>
-				<div class="col-sm">
-						<div class="card">
-							<img class="card-img-top" src="pics/calculusChalkboard.jpg" alt="Card image cap">
-							<div class="card-body">
-								<h4 class="card-title">Tutoring</h4>
-								<p class="card-text">Check out my tutoring services</p>
-								<a href="./tutoring/tutoringHome.html" class="btn btn-primary">Tutoring</a>
-							</div>
-						</div>
-					</div>
+				<div class="card-footer text-center">
+					<a href="./personalProjects/beerCaddy.html" class="btn btn-primary">Projects</a>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="pics/3dbracket1.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Sports</h5>
+					<p class="card-text">March madness bracket builder</p>
+				</div>
+				<div class="card-footer text-center">
+					<a href="./sports/marchMadness.html" class="btn btn-primary">Sports</a>
+				</div>
+			</div>
+			<div class="card">
+				<img class="card-img-top" src="pics/calculusChalkboard.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Tutoring</h5>
+					<p class="card-text">Check out the tutoring services I offer</p>
+				</div>
+				<div class="card-footer text-center">
+					<a href="./tutoring/tutoringHome.html" class="btn btn-primary">Tutoring</a>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- Bootstrap stuff -->
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	</body>
+	<!-- Bootstrap stuff -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+	    crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	    crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	    crossorigin="anonymous"></script>
+</body>
+
 </html>

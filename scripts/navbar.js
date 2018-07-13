@@ -1,18 +1,16 @@
-(function(){
-	var navHandler = 
-	{
-		el : document.querySelectorAll('[src$="/navbar.js"]')
+(function () {
+	var navHandler = {
+		el: document.querySelectorAll('[src$="/navbar.js"]')
 	}
-	console.log("navHandler.el = " + navHandler.el );
-	if(!navHandler.el.length) 
-	{
+	console.log("navHandler.el = " + navHandler.el);
+	if (!navHandler.el.length) {
 		alert("something ran navbar.js, but navbar.js was unable to figure out who called it.  It should be called with <script src='/navbar.js'></script>");
 	}
 	navHandler.el = navHandler.el[0];
-	
+
 	var navbarActive = navHandler.el.getAttribute('navbar-active');
 	var parentDiv = document.createElement('div');
-	
+
 	//I use a back tick here so I don't have to worry about line breaks
 	parentDiv.innerHTML = `
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -81,10 +79,10 @@
 	</div>
 </nav>	
 `;
-	if(navbarActive){
+	if (navbarActive) {
 		var activeEls = parentDiv.querySelectorAll(navbarActive);
 		var i;
-		for(i=0; i<activeEls.length; i++){
+		for (i = 0; i < activeEls.length; i++) {
 			activeEls[i].classList.add('active');
 		}
 	}

@@ -22,14 +22,19 @@
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-#homepage.home .card-img-top
+#homepage .card
 {
-	max-height: 185px;
+	background-color: #1B4F72;
 }
 
-#homepage.home .container-fluid
+#homepage .card-text 
 {
-	width: 75%;
+	color: lightblue;
+}
+
+#homepage .card-title 
+{
+	color: lightblue;
 }
 
 #homepage
