@@ -47,14 +47,33 @@
 	text-align: center;
 }
 
+
+
+#contact
+{
+	background-color: navy;
+
+}
+
 #contact .card
 {
 	margin: 3%;
+	background-color: #1B4F72;
 }
 
 #contact .card-img-top
 {
 	max-height: 250px;
+}
+
+#contact .card-text 
+{
+	color: lightblue;
+}
+
+#contact .card-title 
+{
+	color: lightblue;
 }
 
 
