@@ -30,6 +30,11 @@
     margin: 10px;
 }
 
+#bookClub .card-deck 
+{
+    margin: 1px;
+}
+
 #bookClub .thead 
 {
     background-color: rgb(245, 224, 196);

@@ -7,6 +7,12 @@
 	background-size: cover;
 }
 
+#projectsHome .card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
 #projectsHome.home .jumbotron p
 {
 	color: white;
