@@ -1,0 +1,36 @@
+#bookClub 
+{
+	background-color: rgb(182, 70, 66);
+}
+
+#bookClub .card
+{
+    margin: 25px;
+    text-align: center;
+}
+
+#bookClub .card-body 
+{
+    text-align: left;
+}
+
+#bookClub .card-title 
+{
+    text-align: center;
+}
+
+#bookClub #members 
+{
+    text-align: center;
+}
+
+#bookClub .innerCard 
+{
+    background-color: rgb(245, 224, 196);
+    margin: 10px;
+}
+
+#bookClub .thead 
+{
+    background-color: rgb(245, 224, 196);
+}

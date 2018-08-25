@@ -47,6 +47,10 @@
 	text-align: center;
 }
 
+#homepage .card-deck
+{
+	margin-bottom: 30px
+}
 
 
 #contact
