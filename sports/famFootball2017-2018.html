@@ -1,0 +1,567 @@
+<!doctype html>
+
+<html>
+  	<head>
+    	<title>Jordan's Website</title>
+		<!-- Bootstrap stuff -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link href="../styles/famFootball.css" rel="stylesheet" type="text/css"/>
+		
+  	</head>
+  	<body id="famFootball" class="home">
+		<!-- Navigation bar -->
+		<script src="/navbar.js" navbar-active=".sportsActive, .famFootballPoolActive"></script>
+
+        <div class="card bigCard">
+            <div class="card-body">
+                <div class="card innerCard">
+                    <div class="card-body">
+                        <h3 class="card-title">Family Football Pool</h3>
+                    </div>
+                </div>
+                <div class="card-deck">
+                    <div class="card innerCard">
+                        <div class="card-body">
+                            <h5 class="card-title">2017-2018 Rules:</h5>
+                            <ul>
+                                <ol class="card-text" id="skinny">
+                                    <li>Fill in the bracket before Sep 1st kickoff and send to Mema</li>
+                                    <li>Score a point if you guess the correct winner</li>
+                                    <li>If you guess the winner you are elegible for more points</li>
+                                        <ul>
+                                            <li>One additional point for closest OU Score (ties allowed)</li>
+                                            <li>One additional point for closest Opponent Score (ties allowed)</li>
+                                        </ul>
+                                    <li>Send your $5.00 payment prior to the Texas game</li>
+                                    <li>Winner takes all proceeds</li>
+                                </ol>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card innerCard trophyCard">
+                        <div class="card-body">
+                            <br>
+                            <br>
+                            <br>
+
+                            <button type="button" class="btn btn-primary btn-lg" id="trophyCaseButton" href="./trophyCase.html"> View Past Winners </button>
+                            <br>
+                            <br>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select a Season
+                                </button>
+                                <div class="dropdown-menu" id="seasonDropdown" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="./famFootball2016-2017.html">2016-2017</a>
+                                    <a class="dropdown-item" href="./famFootball2017-2018.html">2017-2018</a>
+                                    <a class="dropdown-item" href="./famFootball2018-2019.html">2018-2019</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!--
+		Refresher on maintaining Fam Football:
+		1. Create/Save/Load table at: https://www.tablesgenerator.com/html_tables#
+		2. Store Past/Current tables on website under sports folder
+		3. Center Table: <table class="tg" align="center">
+		-->
+
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+            .tg .tg-xfvv{font-weight:bold;background-color:#fffc9e;border-color:inherit;text-align:left;vertical-align:top}
+            .tg .tg-pyll{font-weight:bold;background-color:#cb0000;color:#ffffff;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-kbue{font-weight:bold;background-color:#9aff99;border-color:inherit;text-align:left;vertical-align:top}
+            .tg .tg-py60{font-weight:bold;background-color:#ffffc7;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-84w4{font-weight:bold;background-color:#9aff99;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-kt43{font-weight:bold;background-color:#fffc9e;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-4m7p{background-color:#9aff99;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-hafo{background-color:#fffc9e;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-mfhl{background-color:#ffffc7;border-color:inherit;text-align:center;vertical-align:top}
+            .tg .tg-jzk6{font-weight:bold;background-color:#9698ed;text-align:center;vertical-align:top}
+            .tg .tg-fs2w{font-weight:bold;background-color:#cbcefb;text-align:center;vertical-align:top}
+            </style>
+            <table class="tg">
+              <tr>
+                <th class="tg-pyll" colspan="31">Mema's Fridge</th>
+              </tr>
+              <tr>
+                <td class="tg-kbue" colspan="3">2017 - 2018 Regular Season</td>
+                <td class="tg-xfvv" colspan="2">ACTUAL</td>
+                <td class="tg-py60" colspan="2">Alex</td>
+                <td class="tg-py60" colspan="2">Barb</td>
+                <td class="tg-py60" colspan="2">Carson</td>
+                <td class="tg-py60" colspan="2">David</td>
+                <td class="tg-py60" colspan="2">Donna</td>
+                <td class="tg-py60" colspan="2">Gry &amp; Jna</td>
+                <td class="tg-py60" colspan="2">Greg</td>
+                <td class="tg-py60" colspan="2">Jordan</td>
+                <td class="tg-py60" colspan="2">Katelyn</td>
+                <td class="tg-py60" colspan="2">Mema</td>
+                <td class="tg-py60" colspan="2">Michael</td>
+                <td class="tg-py60" colspan="2">Morgan</td>
+                <td class="tg-py60" colspan="2">Taylors</td>
+              </tr>
+              <tr>
+                <td class="tg-84w4">Date</td>
+                <td class="tg-84w4">Home/Away</td>
+                <td class="tg-84w4">Opponent</td>
+                <td class="tg-kt43">Okla.</td>
+                <td class="tg-kt43">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+                <td class="tg-py60">Okla.</td>
+                <td class="tg-py60">Opnt.</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Sep 2</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">UTEP</td>
+                <td class="tg-hafo">56</td>
+                <td class="tg-hafo">7</td>
+                <td class="tg-mfhl">52</td>
+                <td class="tg-mfhl">13</td>
+                <td class="tg-mfhl">69</td>
+                <td class="tg-mfhl">10*</td>
+                <td class="tg-mfhl">56*</td>
+                <td class="tg-mfhl">10*</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">19</td>
+                <td class="tg-mfhl">52</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">51</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">65</td>
+                <td class="tg-mfhl">10*</td>
+                <td class="tg-mfhl">59</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">56*</td>
+                <td class="tg-mfhl">10*</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">13</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">12</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Sep 9</td>
+                <td class="tg-4m7p">Away</td>
+                <td class="tg-4m7p">Ohio State</td>
+                <td class="tg-hafo">31</td>
+                <td class="tg-hafo">16</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">47</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">32*</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">21*</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">28</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Sep 16</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">Tulane</td>
+                <td class="tg-hafo">56</td>
+                <td class="tg-hafo">14</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">65</td>
+                <td class="tg-mfhl">14*</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">14*</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">34</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">55</td>
+                <td class="tg-mfhl">7</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">14*</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">18</td>
+                <td class="tg-mfhl">56*</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">56*</td>
+                <td class="tg-mfhl">7</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">17</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Sep 23</td>
+                <td class="tg-4m7p">Away</td>
+                <td class="tg-4m7p">Baylor</td>
+                <td class="tg-hafo">49</td>
+                <td class="tg-hafo">41</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">34</td>
+                <td class="tg-mfhl">9</td>
+                <td class="tg-mfhl">59</td>
+                <td class="tg-mfhl">45*</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">52*</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">58</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">18</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">21</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Oct 7</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">Iowa State</td>
+                <td class="tg-hafo">31</td>
+                <td class="tg-hafo">38</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">13</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">60</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">36</td>
+                <td class="tg-mfhl">18</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">17</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Oct 14</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">Texas</td>
+                <td class="tg-hafo">29</td>
+                <td class="tg-hafo">24</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">27*</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">21*</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">27*</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">28*</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">34</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">17</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Oct 21</td>
+                <td class="tg-4m7p">Away</td>
+                <td class="tg-4m7p">Kansas State</td>
+                <td class="tg-hafo">42</td>
+                <td class="tg-hafo">35</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">23</td>
+                <td class="tg-mfhl">34</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">27</td>
+                <td class="tg-mfhl">29</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">42*</td>
+                <td class="tg-mfhl">30</td>
+                <td class="tg-mfhl">42*</td>
+                <td class="tg-mfhl">31*</td>
+                <td class="tg-mfhl">32</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">31*</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">42*</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">21</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Oct 28</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">Texas Tech</td>
+                <td class="tg-hafo">49</td>
+                <td class="tg-hafo">27</td>
+                <td class="tg-mfhl">56</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">48*</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">52</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">63</td>
+                <td class="tg-mfhl">28*</td>
+                <td class="tg-mfhl">55</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">55</td>
+                <td class="tg-mfhl">30</td>
+                <td class="tg-mfhl">34</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">55</td>
+                <td class="tg-mfhl">28*</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">12</td>
+                <td class="tg-mfhl">56</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">59</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">38</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Nov 4</td>
+                <td class="tg-4m7p">Away</td>
+                <td class="tg-4m7p">Oklahoma State</td>
+                <td class="tg-hafo">62</td>
+                <td class="tg-hafo">52</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">41*</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">27</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">48*</td>
+                <td class="tg-mfhl">41*</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">55</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">36</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">28</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Nov 11</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">TCU</td>
+                <td class="tg-hafo">38</td>
+                <td class="tg-hafo">20</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">51</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">52</td>
+                <td class="tg-mfhl">41</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">38*</td>
+                <td class="tg-mfhl">18</td>
+                <td class="tg-mfhl">52</td>
+                <td class="tg-mfhl">46</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">31</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">38*</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">27</td>
+                <td class="tg-mfhl">20*</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Nov 18</td>
+                <td class="tg-4m7p">Away</td>
+                <td class="tg-4m7p">Kansas</td>
+                <td class="tg-hafo">41</td>
+                <td class="tg-hafo">3</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">42*</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">7</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">63</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">70</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">56</td>
+                <td class="tg-mfhl">3*</td>
+                <td class="tg-mfhl">56</td>
+                <td class="tg-mfhl">10</td>
+                <td class="tg-mfhl">42*</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">56</td>
+                <td class="tg-mfhl">7</td>
+                <td class="tg-mfhl">45</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">49</td>
+                <td class="tg-mfhl">20</td>
+              </tr>
+              <tr>
+                <td class="tg-4m7p">Sat, Nov 25</td>
+                <td class="tg-4m7p">Home</td>
+                <td class="tg-4m7p">West Virginia</td>
+                <td class="tg-hafo">59</td>
+                <td class="tg-hafo">31</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">21</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">50*</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">30*</td>
+                <td class="tg-mfhl">50*</td>
+                <td class="tg-mfhl">14</td>
+                <td class="tg-mfhl">38</td>
+                <td class="tg-mfhl">20</td>
+                <td class="tg-mfhl">35</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">40</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">42</td>
+                <td class="tg-mfhl">28</td>
+                <td class="tg-mfhl">24</td>
+                <td class="tg-mfhl">17</td>
+                <td class="tg-mfhl">48</td>
+                <td class="tg-mfhl">41</td>
+              </tr>
+              <tr>
+                <td class="tg-jzk6" colspan="5">Total Scores:</td>
+                <td class="tg-fs2w" colspan="2">11</td>
+                <td class="tg-fs2w" colspan="2">12</td>
+                <td class="tg-fs2w" colspan="2">14</td>
+                <td class="tg-fs2w" colspan="2">13</td>
+                <td class="tg-fs2w" colspan="2">14</td>
+                <td class="tg-fs2w" colspan="2">12</td>
+                <td class="tg-fs2w" colspan="2">16</td>
+                <td class="tg-fs2w" colspan="2">11</td>
+                <td class="tg-fs2w" colspan="2">12</td>
+                <td class="tg-fs2w" colspan="2">13</td>
+                <td class="tg-fs2w" colspan="2">14</td>
+                <td class="tg-fs2w" colspan="2">13</td>
+                <td class="tg-fs2w" colspan="2">10</td>
+              </tr>
+            </table>
+
+            <br>
+            <br>
+            <br>
+
+
+		<!-- Bootstrap stuff -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  	</body>
+</html>

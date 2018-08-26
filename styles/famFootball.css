@@ -2,3 +2,47 @@
 {
 	background-image: url("../pics/footballField.png");
 }
+
+#famFootball .card
+{
+    margin: 25px;
+    text-align: center;
+}
+
+#famFootball .card-body 
+{
+    text-align: left;
+}
+
+#famFootball .card-title 
+{
+    text-align: center;
+}
+
+#famFootball .innerCard 
+{
+    background-color: #ffffc7;
+    margin: 2px;
+}
+
+#famFootball .bigCard 
+{
+    background-color: #cb0000;
+    margin: 20px;
+}
+
+#famFootball .card-deck 
+{
+    margin: 1px;
+}
+
+#famFootball .trophyCard
+{
+    align-items: center;
+    
+}
+
+#famFootball .dropdownMenuButton
+{
+    color: green;
+}
