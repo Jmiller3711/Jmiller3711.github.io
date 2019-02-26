@@ -23,59 +23,59 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item indexActive">
-				<a class="nav-link" href="/index.html">Home
+				<a class="nav-link" href="index.html">Home
 					<span class="sr-only">(current)</span>
 				</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle brewActive" href="contact.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brewing</a>
+				<a class="nav-link dropdown-toggle brewActive" href="#" id="navbarDropdownBrewing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brewing</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item brewHomeActive" href="./brewing/brewingHome.html">Brewing Home</a>
+					<a class="dropdown-item brewHomeActive" href="https://jmiller3711.github.io/brewing/brewingHome.html">Brewing Home</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item brewSheetActive" href="./brewing/brewSheet.html">Brew Sheet</a>
-					<a class="dropdown-item brewChoresActive" href="./brewing/beerChores.html">Chores</a>
-					<a class="dropdown-item brewHistActive" href="./brewing/brewingHistory.html">History</a>
-					<a class="dropdown-item brewToolsActive" href="./brewing/brewingTools.html">Tools</a>
-					<a class="dropdown-item brewScheduleActive" href="./brewing/brewingSchedule.html">Schedule</a>
+					<a class="dropdown-item brewSheetActive" href="https://jmiller3711.github.io/brewing/brewSheet.html">Brew Sheet</a>
+					<a class="dropdown-item brewChoresActive" href="https://jmiller3711.github.io/brewing/beerChores.html">Chores</a>
+					<a class="dropdown-item brewHistActive" href="https://jmiller3711.github.io/brewing/brewingHistory.html">History</a>
+					<a class="dropdown-item brewToolsActive" href="https://jmiller3711.github.io/brewing/brewingTools.html">Tools</a>
+					<a class="dropdown-item brewScheduleActive" href="https://jmiller3711.github.io/brewing/brewingSchedule.html">Schedule</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle projectsActive" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+				<a class="nav-link dropdown-toggle projectsActive" href="#" id="navbarDropdownProjects" role="button" data-toggle="dropdown" aria-haspopup="true"
 				 aria-expanded="false">Projects</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item beerCaddyActive" href="./personalProjects/beerCaddy.html">Beer Caddy</a>
-					<a class="dropdown-item securitySystemActive" href="./personalProjects/securitySystem.html">Security System</a>
-					<a class="dropdown-item webDevelopmentActive" href="./personalProjects/webDevelopment.html">Web Development</a>
+					<a class="dropdown-item beerCaddyActive" href="https://jmiller3711.github.io/personalProjects/beerCaddy.html">Beer Caddy</a>
+					<a class="dropdown-item securitySystemActive" href="https://jmiller3711.github.io/personalProjects/securitySystem.html">Security System</a>
+					<a class="dropdown-item webDevelopmentActive" href="https://jmiller3711.github.io/personalProjects/webDevelopment.html">Web Development</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle sportsActive" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+				<a class="nav-link dropdown-toggle sportsActive" href="#" id="navbarDropdownSports" role="button" data-toggle="dropdown" aria-haspopup="true"
 				 aria-expanded="false">Sports</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item famFootballPoolActive" href="./sports/sportsFamilyFootballPool.html">Family Football Pool</a>
-					<a class="dropdown-item marchMadnessActive" href="./sports/marchMadness.html">March Madness</a>
+					<a class="dropdown-item famFootballPoolActive" href="https://jmiller3711.github.io/sports/famFootball2018-2019.html">Family Football Pool</a>
+					<a class="dropdown-item marchMadnessActive" href="https://jmiller3711.github.io/sports/marchMadness.html">March Madness</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle tutorinActive" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+				<a class="nav-link dropdown-toggle tutorinActive" href="#" id="navbarDropdownTutoring" role="button" data-toggle="dropdown" aria-haspopup="true"
 				 aria-expanded="false">Tutoring</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item tutoringHomeActive" href="./tutoring/tutoringHome.html">Tutoring Home</a>
+					<a class="dropdown-item tutoringHomeActive" href="https://jmiller3711.github.io/tutoring/tutoringHome.html">Tutoring Home</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item tutoringAlgebraActive" href="./tutoring/tutoringAlgebra.html">Algebra</a>
-					<a class="dropdown-item tutoringStatisticsActive" href="./tutoring/tutoringStatistics.html">Statistics</a>
-					<a class="dropdown-item tutoringCalculusActive" href="./tutoring/tutoringCalculus.html">Calculus</a>
-					<a class="dropdown-item tutoringProgramming" href="./tutoring/tutoringProgramming.html">Programming</a>
+					<a class="dropdown-item tutoringAlgebraActive" href="https://jmiller3711.github.io/tutoring/tutoringAlgebra.html">Algebra</a>
+					<a class="dropdown-item tutoringStatisticsActive" href="https://jmiller3711.github.io/tutoring/tutoringStatistics.html">Statistics</a>
+					<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/tutoring/calculus/tutoringCalculus.html">Calculus</a>
+					<a class="dropdown-item tutoringProgramming" href="https://jmiller3711.github.io/tutoring/tutoringProgramming.html">Programming</a>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link contactActive" href="contact.html">Contact</a>
+				<a class="nav-link contactActive" href="https://jmiller3711.github.io/contact.html">Contact</a>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
+		<!-- <form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+		</form> -->
 	</div>
 </nav>	
 `;
