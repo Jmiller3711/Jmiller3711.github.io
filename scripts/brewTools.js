@@ -24,7 +24,7 @@ var Hop3RemainingMinutes = 0;
 var Hop3RemainingSeconds = 0;
 var hop3Label = undefined;
 
-var audio = new Audio('./audio/timerAlarm.mp3');
+var audio = new Audio('../audio/timerAlarm.mp3');
 
 //Boil Timer
 function addSubtractBoilMinutes(mins)
