@@ -65,12 +65,12 @@ function resetBoilTimer()
     BoilRemainingMinutes = 0;
     BoilRemainingSeconds = 0;
     BoilLabel.innerText = BoilRemainingMinutes + " min : " + BoilRemainingSeconds + " sec";
-    console.log("Hop 1 timer has reset");
+    console.log("Mash/Boil timer has reset");
 }
 
 function alarmBoil()
 {
-    console.log("Hop 1 timer done");
+    console.log("Mash/Boil timer done");
     audio.play();
     //setTimeout(function(){ alert("Hop 1 Timer has Finshed!"); }, 3);
 }

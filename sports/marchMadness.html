@@ -74,6 +74,10 @@
 		computeRound(allFirstRounds, false);
 	}
 
+	function onInfoClick() {
+		alert("Information on how this was built:\n- google services \n- html explained \n- javascript");
+	}
+
 	function computeRound(TeamsToBattle, TieDetected) {
 		var oldTeamsLength = TeamsToBattle.length;
 		
@@ -234,6 +238,9 @@
 			<p>
 				<button type="button" class="btn btn-danger" id="resetInputButton">CLEAR INPUT</button>
 				<button type="button" class="btn btn-danger" id="resetTeamsButton">CLEAR TEAMS</button>
+			</p>
+			<p>
+				<button type="button" class="btn btn-secondary" onClick="onInfoClick()" id="information">Information</button>
 			</p>
 		</div>
 	</div>
