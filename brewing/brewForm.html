@@ -4,19 +4,18 @@
 <html>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Brew Form</h2>
 
 <form onsubmit="writeToFile(this['firstname'].value, this['lastname'].value)">
   First name:<br>
-  <input type="text" name="firstname" value="DefFirstName">
+  <input type="text" name="firstname" value="">
   <br>
   Last name:<br>
-  <input type="text" name="lastname" value="DefLastName">
+  <input type="text" name="lastname" value="">
   <br><br>
   <input type="submit" value="Download">
 </form> 
 
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
-
+<p>If you click the "Download" button, the form-data will be downloaded to your machine at the location you specify.</p>
 </body>
 </html>
