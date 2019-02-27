@@ -88,3 +88,9 @@
 {
 	background-color: goldenrod;
 }
+
+#carouselContainer {
+    display:table;
+    height:800px;
+    width:100%;
+}
