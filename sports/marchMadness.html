@@ -75,7 +75,11 @@
 	}
 
 	function onInfoClick() {
-		alert("Information on how this was built:\n- google services \n- html explained \n- javascript");
+		alert("Information on how this was built: " +
+		"\n- Google Sheets acted as my database. This is where I store each team's name, seed, and statistic" +
+		"\n- Google Apps Script (https://script.google.com). This served as my API, which is called to generate my json from the database"+
+		"\n- Javascript: The javascript will loop through each match up and determine a winner, filling in the result in the appropriate location within the bracket" + 
+		"\n- HTML: The bracket was created using a table with unique value attributes which are filled from the javascript results");
 	}
 
 	function computeRound(TeamsToBattle, TieDetected) {
