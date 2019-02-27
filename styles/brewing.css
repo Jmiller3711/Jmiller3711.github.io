@@ -97,3 +97,7 @@
 	max-height: 500px;
 	min-width: auto;
 }
+
+.galleryHeader {
+	text-align: center;
+}
