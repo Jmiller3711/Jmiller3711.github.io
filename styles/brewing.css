@@ -90,7 +90,10 @@
 }
 
 #carouselContainer {
-    display:table;
-    max-height:400px;
-	width:100%;
+	width:auto;
 }
+
+.carousel .item img {
+	max-height: 400px;
+	min-width: auto;
+  }
