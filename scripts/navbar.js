@@ -33,10 +33,11 @@
 					<a class="dropdown-item brewHomeActive" href="https://jmiller3711.github.io/brewing/brewingHome.html">Brewing Home</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item brewSheetActive" href="https://jmiller3711.github.io/brewing/brewSheet.html">Brew Sheet</a>
+					<a class="dropdown-item brewToolsActive" href="https://jmiller3711.github.io/brewing/brewingTools.html">Timers</a>
 					<a class="dropdown-item brewChoresActive" href="https://jmiller3711.github.io/brewing/beerChores.html">Chores</a>
 					<a class="dropdown-item brewHistActive" href="https://jmiller3711.github.io/brewing/brewingHistory.html">History</a>
-					<a class="dropdown-item brewToolsActive" href="https://jmiller3711.github.io/brewing/brewingTools.html">Timers</a>
 					<a class="dropdown-item brewScheduleActive" href="https://jmiller3711.github.io/brewing/brewingSchedule.html">Schedule</a>
+					<a class="dropdown-item brewScheduleActive" href="https://jmiller3711.github.io/personalProjects/beerCaddy.html">Beer Caddy</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
