@@ -1,21 +1,45 @@
-<!DOCTYPE html>
-
-<script src="../scripts/brewForm.js"></script>
 <html>
-<body>
+  	<head>
+    	<title>JPMillerEngineering.com</title>
+		<!-- Bootstrap stuff -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link href="../styles/brewing.css" rel="stylesheet" type="text/css"/>
+		
+  	</head>
+  	<body id="contact" class="home">
+        <script src="../scripts/navbar.js" navbar-active=".brewActive,.brewSheetActive"></script>
+		<script src="../scripts/brewForm.js" navbar-active=".brewActive,.brewSheetActive"></script>
 
-<h2>Brew Form</h2>
+        <!-- <h2>Download Form</h2>
+        <form onsubmit="writeToFile(this['firstname'].value, this['lastname'].value)">
+            First name:<br>
+            <input type="text" name="firstname" value="">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="">
+            <br><br>
+            <input type="submit" value="Download">
+        </form> 
+        <p>If you click the "Download" button, the form-data will be downloaded to your machine at the location you specify.</p> -->
 
-<form onsubmit="writeToFile(this['firstname'].value, this['lastname'].value)">
-  First name:<br>
-  <input type="text" name="firstname" value="">
-  <br>
-  Last name:<br>
-  <input type="text" name="lastname" value="">
-  <br><br>
-  <input type="submit" value="Download">
-</form> 
+        <h2>Email Form</h2>
+        <form onsubmit="emailResults(this['firstname'].value, this['lastname'].value, this['email'].value)">
+            First name:<br>
+            <input type="text" name="firstname" value="">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="">
+            <br>
+            Email:<br>
+            <input type="text" name="email" value="jordan.miller.p@gmail.com">
+            <br>
+            <input type="submit" value="Email">
+        </form> 
+        <p>If you click the "Email" button, the form-data will be emailed to jordan.miller.p@gmail.com</p>
 
-<p>If you click the "Download" button, the form-data will be downloaded to your machine at the location you specify.</p>
-</body>
+		<!-- Bootstrap stuff -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  	</body>
 </html>
