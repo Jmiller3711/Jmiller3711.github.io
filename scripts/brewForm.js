@@ -17,12 +17,11 @@ function writeToFile(firstName, lastName){
 }
 
 function emailResults(firstName, lastName, email){
-    var line1 = "First Name: " + firstName + "%0D%0A";
-    var line2 = "Last Name: " + lastName + "%0D%0A";
-    var line3 = "Email Used: " + email + "%0D%0A";
-    var body = line1 + line2 + line3;
+    var line1 = "Hello " + firstName + " " + lastName + "," + "%0D%0A" + "%0D%0A";
+    var line2 = "Thank you for using my brew form. Below are your results:" + "%0D%0A";
+    var body = line1 + line2;
 
-    var subject = "This is the Subject!!!";
+    var subject = "Brew Form Created by JPMillerEngineering.com";
 
     var myString = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
     console.log("myString: ", myString);
