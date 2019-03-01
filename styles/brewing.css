@@ -79,6 +79,14 @@
 	background-color: goldenrod;
 }
 
+#brewingHistory .thead{
+	background-color: #edc30b;
+}
+
+#brewingHistory tr{
+	background-color: #efe0a0;
+}
+
 #brewingSchedule.home
 {
 	background-color: goldenrod;
