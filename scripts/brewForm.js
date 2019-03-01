@@ -16,7 +16,7 @@ function writeToFile(firstName, lastName){
     document.body.removeChild(pom);
 }
 
-function emailResults(totalGrainWeight, strikeWaterVolume, targetMashTemp, spargeWaterTemp, initialMashTemp, finalMashTemp, preBoilSpecificGravity, preBoilVolume, postBoilVolume, originalSpecificGravity, firstName, lastName, email){
+function emailResults(totalGrainWeight, strikeWaterVolume, targetMashTemp, spargeWaterTemp, initialMashTemp, finalMashTemp, preBoilSpecificGravity, preBoilVolume, postBoilVolume, originalSpecificGravity, brewDayNotes, firstName, lastName, email){
 
     var line1 = "Hello " + firstName + " " + lastName + "," + "%0D%0A" + "%0D%0A";
     var line2 = "Thank you for using my brew form. Below are your results:" + "%0D%0A" + "%0D%0A";
@@ -39,16 +39,26 @@ function emailResults(totalGrainWeight, strikeWaterVolume, targetMashTemp, sparg
     var line15 = "Post Boil Calculations:" + "%0D%0A";
     var line16 = "Post-Boil Original SG  = " + originalSpecificGravity + "%0D%0A" + "%0D%0A";
 
-    var line17 = "JPMillerEngineering.com";
+    var line17 = "Brew Day Notes:" + "%0D%0A";
+    var line18;
+    if (brewDayNotes == "") {
+        line18 = "User did not supply any notes" + "%0D%0A" + "%0D%0A";;
+    }
+    else {
+        line18 = brewDayNotes + "%0D%0A" + "%0D%0A";
+    }
+
+    var line19 = "JPMillerEngineering.com";
 
     var greeting = line1 + line2;
     var preBrew = line3 + line4 + line5 + line6 + line7;
     var mash = line8 + line9 + line10;
     var boil = line11 + line12 + line13 + line14;
     var postBoil = line15 + line16;
-    var postScript = line17;
+    var notes = line17 + line18;
+    var postScript = line19;
 
-    var body = greeting + preBrew + mash + boil + postBoil + postScript;
+    var body = greeting + preBrew + mash + boil + postBoil + notes + postScript;
 
     var subject = "Brew Form Created by JPMillerEngineering.com";
 
