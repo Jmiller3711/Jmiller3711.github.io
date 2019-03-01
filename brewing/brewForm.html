@@ -10,28 +10,9 @@
         <script src="../scripts/navbar.js" navbar-active=".brewActive,.brewSheetActive"></script>
 		<script src="../scripts/brewForm.js" navbar-active=".brewActive,.brewSheetActive"></script>
 
-        <!-- <h2>Download Form</h2>
-        <form onsubmit="writeToFile(this['firstname'].value, this['lastname'].value)">
-            First name:<br>
-            <input type="text" name="firstname" value="">
-            <br>
-            Last name:<br>
-            <input type="text" name="lastname" value="">
-            <br><br>
-            <input type="submit" value="Download">
-        </form> 
-        <p>If you click the "Download" button, the form-data will be downloaded to your machine at the location you specify.</p> -->
-
         <h2>Brew Form</h2>
-        <form onsubmit="emailResults(this['firstname'].value, this['lastname'].value, this['email'].value)">
+        <form onsubmit="emailResults(this['totalGrainWeight'].value, this['strikeWaterVolume'].value, this['targetMashTemp'].value, this['spargeWaterTemp'].value, this['initialMashTemp'].value, this['finalMashTemp'].value, this['preBoilSpecificGravity'].value, this['preBoilVolume'].value, this['postBoilVolume'].value, this['originalSpecificGravity'].value, this['firstname'].value, this['lastname'].value, this['email'].value)"> 
             
-            <!-- 
-            Pre-Brew Calculations:
-            totalGrainWeight
-            strikeWaterVolume
-            targetMashTemp
-            spargeWaterTemp 
-            -->
             <div class="card" style="width: 30rem;">
                 <div class="card-header">Pre-Brew Calculations</div>
                 <ul class="list-group list-group-flush">
@@ -39,13 +20,10 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong> Calculate strike water volume </strong> (1.25 quarts / lb of grain)<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="strikeWaterVolume" value=""></li>
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong> Target mash temp </strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="targetMashTemp" value=""></li>
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong> Calculate sparge water temp </strong> (20 deg F higher than target mash temp)<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="spargeWaterTemp" value=""></li>
-                   
-                    <!-- <li class="list-group-item"><input id="checkBox" type="checkbox">  Calculate total weight of grain (lbs)</li>
-                    <li class="list-group-item"><input id="checkBox" type="checkbox">  Calculate strike water volume (1.25 quarts / lb of grain) <br></li>
-                    <li class="list-group-item"><input id="checkBox" type="checkbox">  Target mash temp</li>
-                    <li class="list-group-item"><input id="checkBox" type="checkbox">  Calculate sparge water temp</li>     -->
                 </ul>
             </div>
+
+            <br>
 
             <div class="card" style="width: 30rem;">
                 <div class="card-header">Brew Day Checklist</div>
@@ -59,6 +37,8 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  Fermenter w/ Airlock</li>
                 </ul>
             </div>
+
+            <br>
         
             <div class="card" style="width: 50rem;">
                 <div class="card-header">Before Brewing</div>
@@ -72,12 +52,9 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  Check that all brew equipment is clean and ready for brew day</li>
                 </ul>
             </div>
+
+            <br>
     
-            <!-- 
-            Mashing:
-            initialMashTemp
-            finalMashTemp
-            -->
             <div class="card" style="width: 100rem;">
                 <div class="card-header">Mashing</div>
                 <ul class="list-group list-group-flush">
@@ -90,6 +67,8 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Final Mash Temperature</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="finalMashTemp" value=""></li>
                 </ul>
             </div>
+
+            <br>
     
             <div class="card" style="width: 100rem;">
                 <div class="card-header">Sparging</div>
@@ -99,13 +78,9 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  Continue sparging until the desired boil kettle volume is reached</li>
                 </ul>
             </div>
+
+            <br>
     
-            <!-- 
-            Boiling:
-            preBoilSpecificGravity
-            preBoilVolume
-            postBoilVolume
-            -->
             <div class="card" style="width: 100rem;">
                 <div class="card-header">Boiling</div>
                 <ul class="list-group list-group-flush">
@@ -119,11 +94,9 @@
                     <li class="list-group-item"><input id="checkBox" type="checkbox">  <strong>  Record Post-Boil Volume</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="postBoilVolume" value=""></li>
                 </ul>
             </div>
+
+            <br>
     
-            <!-- 
-            Post-Boil:
-            originalSpecificGravity
-            -->
             <div class="card" style="width: 100rem;">
                 <div class="card-header">Cooling and Transferring (Post-Boil)</div>
                 <ul class="list-group list-group-flush">
@@ -138,31 +111,22 @@
                 </ul>
             </div>
 
+            <br>
+
             <div class="card" style="width: 30rem;">
                 <div class="card-header">Email Information</div>
 
                 <ul class="list-group list-group-flush">
-                    <!-- <li class="list-group-item"><strong>First Name:</strong><input type="text" name="firstname" value=""></li> -->
                     <li class="list-group-item"><strong>First Name:</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="firstname" value=""></li>
                     <li class="list-group-item"><strong>Last Name:</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="lastname" value=""></li>
                     <li class="list-group-item"><strong>Email:</strong><input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="email" value="jordan.miller.p@gmail.com"></li>
                     <input type="submit" value="Email">
+                    <!-- <input type="submit" value="Download"> -->
                 </ul>
-<!-- 
-                First name:<br>
-                <input type="text" name="firstname" value="">
-                <br>
-                Last name:<br>
-                <input type="text" name="lastname" value="">
-                <br>
-                Email:<br>
-                <input type="text" name="email" value="jordan.miller.p@gmail.com">
-                <br>
-                <input type="submit" value="Email"> -->
             </div>
 
         </form> 
-        <p>If you click the "Email" button, the form-data will be emailed to jordan.miller.p@gmail.com</p>
+        <p>If you click the "Email" button, the form-data will be emailed to the email which you specify</p>
 
 		<!-- Bootstrap stuff -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
