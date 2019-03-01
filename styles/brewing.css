@@ -89,6 +89,11 @@
 	background-color: goldenrod;
 }
 
+#brewForm.home
+{
+	background-color: goldenrod;
+}
+
 #carouselContainer {
 	width:auto;
 }
@@ -105,4 +110,10 @@
 .backToTopButton
 {
 	text-align: center;
+}
+
+.card {
+	margin: 0 auto; 
+	float: none; 
+	margin-bottom: 10px;
 }
