@@ -1,4 +1,9 @@
 /*====================calculus====================*/
+#calculus.home 
+{
+	background-color: #149133;
+}
+
 #calculus.home .container .card
 {
 	margin: 1%;
@@ -22,6 +27,18 @@
 	text-align: left;
 }
 
+/*====================algebra====================*/
+#algebra.home 
+{
+	background-color: #149133;
+}
+
+/*====================programming====================*/
+#programming.home 
+{
+	background-color: #149133;
+}
+
 /*====================tutoring====================*/
 #tutoring.home .jumbotron
 {
@@ -39,4 +56,20 @@
 #tutoring.home h1
 {
 	color:white
+}
+
+#tutoring.home 
+{
+	background-color: #149133;
+}
+
+#tutoring .card 
+{
+	background-color: #ceedd5;
+}
+
+.card {
+	margin: 0 auto; 
+	float: none; 
+	margin-bottom: 10px;
 }
