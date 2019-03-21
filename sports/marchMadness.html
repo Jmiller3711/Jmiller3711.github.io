@@ -44,7 +44,10 @@
 		{
 			$(".dropdown > option").text("");
 		});
-
+		$("select#yearDropdown").change(function ()
+		{
+			loadData();
+		});
 		$("select#stat").change(function () 
 		{
 			console.log($(this).val()); //returns value
