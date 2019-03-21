@@ -14,8 +14,10 @@
  crossorigin="anonymous"></script>
 <!-- <script src="./marchMadness.js"></script> -->
 <script>
-	function loadData(year) 
+	function loadData() 
 	{
+		var e = document.getElementById("yearDropdown");
+		var year = e.options[e.selectedIndex].value;
 		$.getScript('https://script.google.com/macros/s/AKfycbwbHIPbB096wnWNFtiqNOnWL6vo9yRe3CSSHeHlA8vXRlBdbf4v/exec?callback=gotData&year=' + year);
 	}
 
@@ -218,7 +220,7 @@
 
 			<p>
 				<strong>Select Year: </strong>
-				<select>
+				<select id="yearDropdown">
 					<option value="2018">2018</option>
 					<option value="2019">2019</option>
 				</select>
