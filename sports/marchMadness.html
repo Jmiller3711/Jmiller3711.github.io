@@ -32,8 +32,82 @@
 		}
 	}
 
+	function loadLabels(year)
+	{
+		if (year == "2018")
+		{
+			$("#NorthWestLabel").val("SOUTH");
+			$("#NorthEastLabel").val("EAST");
+			$("#SouthWestLabel").val("WEST");
+			$("#SouthEastLabel").val("MIDWEST");
+		}
+		else if (year == "2019")
+		{
+			$("#NorthWestLabel").val("EAST");
+			$("#NorthEastLabel").val("SOUTH");
+			$("#SouthWestLabel").val("WEST");
+			$("#SouthEastLabel").val("MIDWEST");
+		}
+		else
+		{
+			$("#NorthWestLabel").val("error");
+			$("#NorthEastLabel").val("error");
+			$("#SouthWestLabel").val("error");
+			$("#SouthEastLabel").val("error");
+		}
+	}
+
+	function loadDates(year)
+	{
+		if (year == "2018")
+		{
+			$("#LeftRound1Dates").val("March 15-16");
+			$("#LeftRound2Dates").val("March 17-18");
+			$("#LeftSweet16Dates").val("March 22-23");
+			$("#LeftElite8Dates").val("March 24-25");
+			$("#LeftFinal4Dates").val("March 31st");
+
+			$("#RightRound1Dates").val("March 15-16");
+			$("#RightRound2Dates").val("March 17-18");
+			$("#RightSweet16Dates").val("March 22-23");
+			$("#RightElite8Dates").val("March 24-25");
+			$("#RightFinal4Dates").val("March 31st");
+		}
+		else if (year == "2019")
+		{
+			$("#LeftRound1Dates").val("March 21-22");
+			$("#LeftRound2Dates").val("March 23-24");
+			$("#LeftSweet16Dates").val("March 28-29");
+			$("#LeftElite8Dates").val("March 30-31");
+			$("#LeftFinal4Dates").val("April 6th");
+
+			$("#RightRound1Dates").val("March 21-22");
+			$("#RightRound2Dates").val("March 23-24");
+			$("#RightSweet16Dates").val("March 28-29");
+			$("#RightElite8Dates").val("March 30-31");
+			$("#RightFinal4Dates").val("April 6th");
+		}
+		else
+		{
+			$("#LeftRound1Dates").val("error");
+			$("#LeftRound2Dates").val("error");
+			$("#LeftSweet16Dates").val("error");
+			$("#LeftElite8Dates").val("error");
+			$("#LeftFinal4Dates").val("error");
+
+			$("#RightRound1Dates").val("error");
+			$("#RightRound2Dates").val("error");
+			$("#RightSweet16Dates").val("error");
+			$("#RightElite8Dates").val("error");
+			$("#RightFinal4Dates").val("error");
+		}
+	}
+
 	$(function () 
 	{
+		var e = document.getElementById("yearDropdown");
+		var year = e.options[e.selectedIndex].value;
+
 		$("#resetInputButton").click(function () 
 		{
 			$(".inputField").val(""); 
@@ -44,8 +118,6 @@
 		});
 		$("select#yearDropdown").change(function ()
 		{
-			var e = document.getElementById("yearDropdown");
-			var year = e.options[e.selectedIndex].value;
 			loadData(year);
 		});
 		$("select#stat").change(function () 
@@ -59,7 +131,10 @@
 				teamInput.val($(this).data("team")[stat]);
 			});
 		});
-		loadData();
+
+		loadLabels(year);
+		loadDates(year);
+		loadData(year);
 	});
 
 	function onRumbleClick() {
@@ -275,19 +350,19 @@
 		</tr>
 		<tr>
 			<td class="alignMe">Load/Enter</td>
-			<td class="alignMe">March 15-16</td>
-			<td class="alignMe">March 17-28</td>
-			<td class="alignMe">March 22-23</td>
-			<td class="alignMe">March 24-25</td>
-			<td class="alignMe">March 31st</td>
+			<td id="LeftRound1Dates" class="alignMe">March 15-16</td>
+			<td id="LeftRound2Dates" class="alignMe">March 17-28</td>
+			<td id="LeftSweet16Dates" class="alignMe">March 22-23</td>
+			<td id="LeftElite8Dates" class="alignMe">March 24-25</td>
+			<td id="LeftFinal4Dates" class="alignMe">March 31st</td>
 			<th></th>
 			<th></th>
 			<th></th>
-			<td class="alignMe">March 31st</td>
-			<td class="alignMe">March 24-25</td>
-			<td class="alignMe">March 22-23</td>
-			<td class="alignMe">March 17-28</td>
-			<td class="alignMe">March 15-16</td>
+			<td id="RightRound1Dates" class="alignMe">March 31st</td>
+			<td id="RightRound2Dates" class="alignMe">March 24-25</td>
+			<td id="RightSweet16Dates" class="alignMe">March 22-23</td>
+			<td id="RightElite8Dates" class="alignMe">March 17-28</td>
+			<td id="RightFinal4Dates" class="alignMe">March 15-16</td>
 			<td class="alignMe">Load/Enter</td>
 		</tr>
 		<tr>
@@ -679,7 +754,7 @@
 				<td></td>
 				<td></td>
 				<td class="alignMe">
-					<strong>SOUTH</strong>
+					<strong id="NorthWestLabel">SOUTH</strong>
 				</td>
 				<td></td>
 				<td class="NW">
@@ -703,7 +778,7 @@
 				</td>
 				<td></td>
 				<td class="alignMe">
-					<strong>EAST</strong>
+					<strong id= "NorthEastLabel">EAST</strong>
 				</td>
 				<td></td>
 				<td></td>
@@ -1559,7 +1634,7 @@
 					<td></td>
 					<td></td>
 					<td class="alignMe">
-						<strong>WEST</strong>
+						<strong id="SouthWestLabel">WEST</strong>
 					</td>
 					<td></td>
 					<td class="SW">
@@ -1583,7 +1658,7 @@
 					</td>
 					<td></td>
 					<td class="alignMe">
-						<strong>MIDWEST</strong>
+						<strong id="SouthEastLabel">MIDWEST</strong>
 					</td>
 					<td></td>
 					<td></td>
