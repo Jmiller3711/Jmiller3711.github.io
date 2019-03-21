@@ -36,10 +36,10 @@
 	{
 		if (year == "2018")
 		{
-			$("#NorthWestLabel").innerHTML = "SOUTH";
-			$("#NorthEastLabel").innerHTML = "EAST";
-			$("#SouthWestLabel").innerHTML = "WEST";
-			$("#SouthEastLabel").innerHTML = "MIDWEST";
+			$("#NorthWestLabel").text("SOUTH");
+			$("#NorthEastLabel").text("EAST");
+			$("#SouthWestLabel").text("WEST");
+			$("#SouthEastLabel").text("MIDWEST");
 		}
 		else if (year == "2019")
 		{
@@ -118,7 +118,7 @@
 			var e = document.getElementById("yearDropdown");
 			var year = e.options[e.selectedIndex].value;
 			loadLabels(year);
-			loadDates(year);
+			//loadDates(year);
 			loadData(year);
 		});
 		$("select#stat").change(function () 
@@ -136,7 +136,7 @@
 		var e = document.getElementById("yearDropdown");
 		var year = e.options[e.selectedIndex].value;
 		loadLabels(year);
-		loadDates(year);
+		//loadDates(year);
 		loadData(year);
 	});
 
