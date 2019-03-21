@@ -105,9 +105,6 @@
 
 	$(function () 
 	{
-		var e = document.getElementById("yearDropdown");
-		var year = e.options[e.selectedIndex].value;
-
 		$("#resetInputButton").click(function () 
 		{
 			$(".inputField").val(""); 
@@ -118,6 +115,10 @@
 		});
 		$("select#yearDropdown").change(function ()
 		{
+			var e = document.getElementById("yearDropdown");
+			var year = e.options[e.selectedIndex].value;
+			loadLabels(year);
+			loadDates(year);
 			loadData(year);
 		});
 		$("select#stat").change(function () 
@@ -132,6 +133,8 @@
 			});
 		});
 
+		var e = document.getElementById("yearDropdown");
+		var year = e.options[e.selectedIndex].value;
 		loadLabels(year);
 		loadDates(year);
 		loadData(year);
