@@ -115,6 +115,9 @@
 		});
 		$("select#yearDropdown").change(function ()
 		{
+			$(".inputField").val(""); 
+			$(".dropdown > option").text("");
+
 			var e = document.getElementById("yearDropdown");
 			var year = e.options[e.selectedIndex].value;
 			loadLabels(year);
