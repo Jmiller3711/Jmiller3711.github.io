@@ -118,6 +118,8 @@
 			$(".inputField").val(""); 
 			$(".dropdown > option").text("");
 
+			document.getElementById("stat").value = "user";
+
 			var e = document.getElementById("yearDropdown");
 			var year = e.options[e.selectedIndex].value;
 			loadLabels(year);
