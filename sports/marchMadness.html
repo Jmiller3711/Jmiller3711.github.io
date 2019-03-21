@@ -36,10 +36,10 @@
 	{
 		if (year == "2018")
 		{
-			$("#NorthWestLabel").text("SOUTH");
-			$("#NorthEastLabel").text("EAST");
-			$("#SouthWestLabel").text("WEST");
-			$("#SouthEastLabel").text("MIDWEST");
+			$("#NorthWestLabel").html("SOUTH");
+			$("#NorthEastLabel").html("EAST");
+			$("#SouthWestLabel").html("WEST");
+			$("#SouthEastLabel").html("MIDWEST");
 		}
 		else if (year == "2019")
 		{
@@ -50,10 +50,10 @@
 		}
 		else
 		{
-			document.getElementById("#NorthWestLabel").innerHTML = "error";
-			document.getElementById("#NorthEastLabel").innerHTML = "error";
-			document.getElementById("#SouthWestLabel").innerHTML = "error";
-			document.getElementById("#SouthEastLabel").innerHTML = "error";
+			$("#NorthWestLabel").html("error");
+			$("#NorthEastLabel").html("error");
+			$("#SouthWestLabel").html("error");
+			$("#SouthEastLabel").html("error");
 		}
 	}
 
@@ -61,45 +61,45 @@
 	{
 		if (year == "2018")
 		{
-			document.getElementById("#LeftRound1Dates").innerHTML = "March 15-16";
-			document.getElementById("#LeftRound2Dates").innerHTML = "March 17-18";
-			document.getElementById("#LeftSweet16Dates").innerHTML = "March 22-23";
-			document.getElementById("#LeftElite8Dates").innerHTML = "March 24-25";
-			document.getElementById("#LeftFinal4Dates").innerHTML = "March 31st";
+			$("#LeftRound1Dates").html("March 15-16"); 
+			$("#LeftRound2Dates").html("March 17-18");
+			$("#LeftSweet16Dates").html("March 22-23");
+			$("#LeftElite8Dates").html("March 24-25");
+			$("#LeftFinal4Dates").html("March 31st");
 
-			document.getElementById("#RightRound1Dates").innerHTML = "March 15-16";
-			document.getElementById("#RightRound2Dates").innerHTML = "March 17-18";
-			document.getElementById("#RightSweet16Dates").innerHTML = "March 22-23";
-			document.getElementById("#RightElite8Dates").innerHTML = "March 24-25";
-			document.getElementById("#RightFinal4Dates").innerHTML = "March 31st";
+			$("#RightRound1Dates").html("March 15-16");
+			$("#RightRound2Dates").html("March 17-18");
+			$("#RightSweet16Dates").html("March 22-23");
+			$("#RightElite8Dates").html("March 24-25");
+			$("#RightFinal4Dates").html("March 31st");
 		}
 		else if (year == "2019")
 		{
-			document.getElementById("#LeftRound1Dates").innerHTML = "March 21-22";
-			document.getElementById("#LeftRound2Dates").innerHTML = "March 23-24";
-			document.getElementById("#LeftSweet16Dates").innerHTML = "March 28-29";
-			document.getElementById("#LeftElite8Dates").innerHTML = "March 30-31";
-			document.getElementById("#LeftFinal4Dates").innerHTML = "April 6th";
+			$("#LeftRound1Dates").html("March 21-22"); 
+			$("#LeftRound2Dates").html("March 23-24");
+			$("#LeftSweet16Dates").html("March 28-29");
+			$("#LeftElite8Dates").html("March 30-31");
+			$("#LeftFinal4Dates").html("April 6th");
 
-			document.getElementById("#RightRound1Dates").innerHTML = "March 21-22";
-			document.getElementById("#RightRound2Dates").innerHTML = "March 23-24";
-			document.getElementById("#RightSweet16Dates").innerHTML = "March 28-29";
-			document.getElementById("#RightElite8Dates").innerHTML = "March 30-31";
-			document.getElementById("#RightFinal4Dates").innerHTML = "April 6th";
+			$("#RightRound1Dates").html("March 21-22");
+			$("#RightRound2Dates").html("March 23-24");
+			$("#RightSweet16Dates").html("March 28-29");
+			$("#RightElite8Dates").html("March 30-31");
+			$("#RightFinal4Dates").html("April 6th");
 		}
 		else
 		{
-			document.getElementById("#LeftRound1Dates").innerHTML = "error";
-			document.getElementById("#LeftRound2Dates").innerHTML = "error";
-			document.getElementById("#LeftSweet16Dates").innerHTML = "error";
-			document.getElementById("#LeftElite8Dates").innerHTML = "error";
-			document.getElementById("#LeftFinal4Dates").innerHTML = "error";
+			$("#LeftRound1Dates").html("error"); 
+			$("#LeftRound2Dates").html("error");
+			$("#LeftSweet16Dates").html("error");
+			$("#LeftElite8Dates").html("error");
+			$("#LeftFinal4Dates").html("error");
 
-			document.getElementById("#RightRound1Dates").innerHTML = "error";
-			document.getElementById("#RightRound2Dates").innerHTML = "error";
-			document.getElementById("#RightSweet16Dates").innerHTML = "error";
-			document.getElementById("#RightElite8Dates").innerHTML = "error";
-			document.getElementById("#RightFinal4Dates").innerHTML = "error";
+			$("#RightRound1Dates").html("error");
+			$("#RightRound2Dates").html("error");
+			$("#RightSweet16Dates").html("error");
+			$("#RightElite8Dates").html("error");
+			$("#RightFinal4Dates").html("error");
 		}
 	}
 
@@ -118,7 +118,7 @@
 			var e = document.getElementById("yearDropdown");
 			var year = e.options[e.selectedIndex].value;
 			loadLabels(year);
-			//loadDates(year);
+			loadDates(year);
 			loadData(year);
 		});
 		$("select#stat").change(function () 
@@ -136,7 +136,7 @@
 		var e = document.getElementById("yearDropdown");
 		var year = e.options[e.selectedIndex].value;
 		loadLabels(year);
-		//loadDates(year);
+		loadDates(year);
 		loadData(year);
 	});
 
