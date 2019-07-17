@@ -53,6 +53,13 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle gamesActive" href="#" id="navbarDropdownGames" role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">Games</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item zonesActive" href="https://jmiller3711.github.io/games/zones.html">ZONES</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle sportsActive" href="#" id="navbarDropdownSports" role="button" data-toggle="dropdown" aria-haspopup="true"
 				 aria-expanded="false">Sports</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
