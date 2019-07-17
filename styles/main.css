@@ -86,10 +86,11 @@
 	color: lightblue;
 }
 
-/* #navbar .bg-light
+#navbar
 {
-	background-color: #42f4c8;
-} */
+	display: flex;
+	justify-content: center;
+}
 
 
 
