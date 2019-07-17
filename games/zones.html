@@ -27,7 +27,7 @@
                 <th>Time:</th>
                 <th id = "time"></th>
                 <th>Score:</th>
-                <th id = "score"></th>
+                <th id = "score">0</th>
             </tr>
         </table>
     </div>   
@@ -35,9 +35,10 @@
     <br>
 
     <div class="alignMe">
-        <div>
-            <button type="button" class="btn btn-info" onClick='startGame()'>Start 1P</button>
-            <button type="button" class="btn btn-danger" onClick='stop()'>Stop</button>
+        <div id="buttonGroup">
+            <button id="startButton" type="button" class="btn btn-info" onClick='startGame()'>New Game</button>
+            <button id="stopGameButton" type="button" class="btn btn-danger" onClick='stopGame()'>Stop</button>
+            <button id="howToPlayButton" type="button" class="btn btn-success" onClick='howToPlay()'>How To Play</button>
         </div>
     </div>
 
