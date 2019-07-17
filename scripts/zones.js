@@ -35,7 +35,7 @@ function stopGame() {
 }
 
 function howToPlay() {
-    alert("ZONES is easy to play:\nClick the highlighted zones as fast as you can\nYou get 1 point for every correct click\nYou lose 1 point for every incorrect click\n\nThe current record is: 52 points by JPM");
+    alert("ZONES is easy to play:\nClick the highlighted zones as fast as you can\nYou get 1 point for every correct click\nYou lose 1 point for every incorrect click\n\nThe current record is: 41 points by JPM");
 }
 
 function selectRandomQuadrant() {
@@ -136,7 +136,6 @@ function updateScore(updateValue) {
 
 function gameOver() {
     resetBoardColors();
-    var currentScore = document.getElementById('score').innerHTML;
     alert("You scored " + currentScore + " points. \n\n0-19: Just Plain Slow\n20-39: You're Just Average\n40-49: You're Pretty Fast\n50+: You're Lightning!");
 }
 
