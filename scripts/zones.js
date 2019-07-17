@@ -138,6 +138,7 @@ function updateScore(updateValue) {
 
 function gameOver() {
     resetBoardColors();
+    var currentScore = document.getElementById('score').innerHTML;
     alert("You scored " + currentScore + " points. \n\n0-19: Just Plain Slow\n20-39: You're Just Average\n40-49: You're Pretty Fast\n50+: You're Lightning!");
 }
 
