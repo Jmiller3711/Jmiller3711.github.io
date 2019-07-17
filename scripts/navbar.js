@@ -86,6 +86,8 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item tutoringAlgebraActive" href="https://jmiller3711.github.io/bookClub/questionsQ2-2018.html">Ready Player One (Q2-2018)</a>
 						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ3-2018.html">Beneath a Scarlet Sky (Q3-2018)</a>
+						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ4-2018.html">The Underground Railroad (Q4-2018)</a>
+						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ1-2019.html">A Trip to the Beach (Q1-2019)</a>
 					</div>
 				</li>
 			<li class="nav-item">
