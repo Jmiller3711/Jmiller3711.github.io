@@ -17,6 +17,12 @@ th, td
     padding: 10px;
 }
 
+#boardHolder
+{
+    display: flex;
+    justify-content: center;
+}
+
 #board 
 {
     transform: rotate(45deg);
