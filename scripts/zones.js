@@ -39,22 +39,24 @@ function howToPlay() {
 }
 
 function selectRandomQuadrant() {
-    var selection = Math.floor(Math.random() * 4) + 1  
-    if (selection == 1) { //North
-        $('#north').css('background-color', highlightNorthColor);
-    } 
-    else if (selection == 2) { //East
-        $('#east').css('background-color', highlightEastColor);
-    }
-    else if (selection == 3) { //South
-        $('#south').css('background-color', highlightSouthColor);
-    }
-    else if (selection == 4) { //West
-        $('#west').css('background-color', highlightWestColor);
-    }
-    else {
-        alert("Error");
-    }
+    setTimeout(function(){
+        var selection = Math.floor(Math.random() * 4) + 1  
+        if (selection == 1) { //North
+            $('#north').css('background-color', highlightNorthColor);
+        } 
+        else if (selection == 2) { //East
+            $('#east').css('background-color', highlightEastColor);
+        }
+        else if (selection == 3) { //South
+            $('#south').css('background-color', highlightSouthColor);
+        }
+        else if (selection == 4) { //West
+            $('#west').css('background-color', highlightWestColor);
+        }
+        else {
+            alert("Error");
+        }
+    },50);
 }
 
 function northClick() {
