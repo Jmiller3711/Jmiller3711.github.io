@@ -4,7 +4,8 @@ var gameInProgress = false;
 
 function startGame() {
     badTooth = selectRandomTooth();
-    alert("Start game, good luck! badTooth = " + badTooth);
+    document.getElementById("trexImg").src="../pics/trex2.png";
+    alert("Start game, good luck!");
     gameInProgress = true;
 }
 
@@ -33,6 +34,7 @@ function toothClick(toothNumber) {
     }
 
     if (badTooth == toothNumber){
+        document.getElementById("trexImg").src="../pics/trex3.png";
         gameOver();
     }
     else {
@@ -43,6 +45,6 @@ function toothClick(toothNumber) {
 
 function gameOver() {
     badTooth = 0;
-    alert("Rawr! Game over!");
+    document.getElementById("trexImg").src="../pics/trex3.png";
     gameInProgress = false;
 }
