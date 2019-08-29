@@ -53,17 +53,11 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle gamesActive" href="#" id="navbarDropdownGames" role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">Games</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item zonesActive" href="https://jmiller3711.github.io/games/zones.html">ZONES</a>
-				</div>
-			</li>
-			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle sportsActive" href="#" id="navbarDropdownSports" role="button" data-toggle="dropdown" aria-haspopup="true"
 				 aria-expanded="false">Sports</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item famFootballPoolActive" href="https://jmiller3711.github.io/sports/famFootball2018-2019.html">Family Football Pool</a>
+					<!-- <a class="dropdown-item famFootballPoolActive" href="https://jmiller3711.github.io/sports/famFootball2018-2019.html">Family Football Pool</a> -->
+					<a class="dropdown-item famFootballPoolActive" href="https://cwynn.com/mema-football-2019/">Family Football Pool</a>
 					<a class="dropdown-item marchMadnessActive" href="https://jmiller3711.github.io/sports/marchMadness.html">March Madness</a>
 				</div>
 			</li>
@@ -86,8 +80,6 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item tutoringAlgebraActive" href="https://jmiller3711.github.io/bookClub/questionsQ2-2018.html">Ready Player One (Q2-2018)</a>
 						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ3-2018.html">Beneath a Scarlet Sky (Q3-2018)</a>
-						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ4-2018.html">The Underground Railroad (Q4-2018)</a>
-						<a class="dropdown-item tutoringCalculusActive" href="https://jmiller3711.github.io/bookClub/questionsQ1-2019.html">A Trip to the Beach (Q1-2019)</a>
 					</div>
 				</li>
 			<li class="nav-item">
